@@ -1,0 +1,13 @@
+{
+    "name": "AdvancedStudentPortal",
+    "alias": "advancedstudentportal",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AdvancedStudentPortal\\Providers\\AdvancedStudentPortalServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

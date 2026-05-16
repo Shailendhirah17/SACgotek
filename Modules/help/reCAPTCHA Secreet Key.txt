@@ -1,0 +1,9 @@
+For enable recaptcha , you have setup from here fo recaptcha v2,
+https://www.google.com/recaptcha/admin/site/431097567/setup
+
+
+
+Please add two variables in your .env file
+
+NOCAPTCHA_SITEKEY= 
+NOCAPTCHA_SECRET=

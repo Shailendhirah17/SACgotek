@@ -1,0 +1,6 @@
+Please add two variables in your .env file
+
+
+
+RAZORPAY_KEY=
+RAZORPAY_SECRET= 

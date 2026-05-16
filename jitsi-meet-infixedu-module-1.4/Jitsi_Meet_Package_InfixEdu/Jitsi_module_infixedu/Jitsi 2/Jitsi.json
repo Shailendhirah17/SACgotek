@@ -1,0 +1,24 @@
+{
+    "Jitsi": {
+
+        "item_id": "32973934",
+
+        "migration": {
+            "jitsi_settings" : "Modules/Jitsi/Database/Migrations/2021_03_29_070403_create_jitsi_settings_table.php",
+            "jitsi_meetings" : "Modules/Jitsi/Database/Migrations/2021_03_29_124902_create_jitsi_meetings_table.php",
+            "jitsi_virtual_classes" : "Modules/Jitsi/Database/Migrations/2021_03_29_055746_create_jitsi_virtual_classes_table.php",
+            "jitsi_virtual_class_teachers" : "Modules/Jitsi/Database/Migrations/2021_03_29_060954_jitsi_virtual_class_teachers.php",
+            "jitsi_meeting_users" : "Modules/Jitsi/Database/Migrations/2021_03_31_114808_create_jitsi_meeting_users_table.php"
+        },
+
+        "versions": [
+            "1.4"
+        ],
+        "url": [
+            "https://spondonit.com/contact"
+        ],
+        "notes": [
+            "This is Jitsi module for live virtual class and meeting in this system at a time. Thanks for using."
+        ]
+    }
+}

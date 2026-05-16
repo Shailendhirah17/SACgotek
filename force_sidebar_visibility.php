@@ -1,0 +1,53 @@
+<?php
+/**
+ * ERP Force Sidebar Visibility
+ * Run: php artisan tinker force_sidebar_visibility.php
+ */
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
+
+$customModules = [
+    'DashboardAnalytics', 'AdvancedStudentPortal', 'AdvancedHrPortal', 
+    'AdvancedExamPortal', 'SmartTransport', 'SmartCommunication', 'SmartFrontOffice'
+];
+
+echo "🛠️ Forcing Sidebar Visibility for Custom Modules...\n";
+
+foreach ($customModules as $module) {
+    try {
+        $updated = DB::table('sm_menus')
+            ->where('module', $module)
+            ->update([
+                'permission_id' => 1,  // Root permission
+                'role_id' => 1,        // Super Admin
+                'status' => 1,
+                'menu_status' => 1,
+                'parent_id' => 0,      // Root level
+                'is_saas' => 0,
+                'school_id' => 1
+            ]);
+
+        if ($updated) {
+            echo "✅ Visibility FORCED: $module\n";
+        } else {
+            echo "❓ Menu not found for $module (Seed might be missing)\n";
+        }
+    } catch (\Exception $e) {
+        echo "❌ Error for $module: " . $e->getMessage() . "\n";
+    }
+}
+
+// Global Cleanup
+try {
+    Cache::flush();
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    echo "🧹 Sidebar Caches Purged.\n";
+} catch (\Exception $e) {
+    echo "⚠️ Cleanup issue: " . $e->getMessage() . "\n";
+}
+
+echo "\n✨ DONE! Please check the sidebar now.\n";

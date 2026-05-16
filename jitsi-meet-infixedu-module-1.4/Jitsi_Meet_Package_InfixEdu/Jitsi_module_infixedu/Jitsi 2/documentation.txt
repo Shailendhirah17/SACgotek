@@ -1,0 +1,87 @@
+////// infix_module_info
+  
+       -- start Jitsi
+
+        (816, 30, 0, '1', 0,'Jitsi Virtual Class','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (817, 30, 816, '2', 0,'Virtual Class','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (818, 30, 817, '3', 0,'Add','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (819, 30, 817, '3', 0,'Edit','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (820, 30, 817, '3', 0,'Delete','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (821, 30, 817, '3', 0,'Start Class','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+
+        (822, 30, 816, '2', 0,'Virtual Meeting','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (833, 30, 822, '2', 0,'Virtual Meeting','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (823, 30, 822, '3', 0,'Add','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (824, 30, 822, '3', 0,'Edit','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (825, 30, 822, '3',0, 'Delete','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (826, 30, 822, '3', 0,'Start Meeting','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+
+        (827, 30, 816, '2', 0,'Class Report','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (828, 30, 827, '3', 0,'Search','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+
+        (829, 30, 816, '2', 0,'Meeting Report','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (830, 30, 829, '3', 0,'Search','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+
+        (831, 30, 816, '2', 0,'Settings','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+        (832, 30, 831, '3', 0,'Update','',1, 1, 1, 1, '2019-07-25 02:21:21', '2019-07-25 04:24:22'),
+
+        -- end jitsi
+
+///create folder into public 
+    public/uploads/jitsi-meeting
+
+// sidebar    
+    @if(moduleStatusCheck('Jitsi')==true)
+         @include('jitsi::menu.jitsi_sidebar')
+    @endif
+
+//parent_sidebar
+    @if(userPermission(816))
+    <li>
+        <a href="#subMenuJisti" data-toggle="collapse" aria-expanded="false"
+        class="dropdown-toggle">
+            <span class="flaticon-reading"></span>
+        @lang('jitsi::jitsi.jitsi')
+        </a>
+        <ul class="collapse list-unstyled" id="subMenuJisti">
+            @if(userPermission(817))
+                <li>
+                    <a href="{{ route('jitsi.virtual-class')}}">@lang('common.virtual_class')</a>
+                </li>
+            @endif
+            @if(userPermission(833))
+                <li>
+                    <a href="{{ route('jitsi.meetings') }}">@lang('lang.virtual_meeting')</a>
+                </li>
+            @endif
+            
+        </ul>
+    </li>
+    <!-- jitsi Menu  -->
+  @endif
+
+//student_sidebar
+
+     @if(userPermission(816))
+    <li>
+        <a href="#subMenuJisti" data-toggle="collapse" aria-expanded="false"
+        class="dropdown-toggle">
+            <span class="flaticon-reading"></span>
+        @lang('jitsi::jitsi.jitsi')
+        </a>
+        <ul class="collapse list-unstyled" id="subMenuJisti">
+            @if(userPermission(817))
+                <li>
+                    <a href="{{ route('jitsi.virtual-class')}}">@lang('common.virtual_class')</a>
+                </li>
+            @endif
+            @if(userPermission(833))
+                <li>
+                    <a href="{{ route('jitsi.meetings') }}">@lang('lang.virtual_meeting')</a>
+                </li>
+            @endif
+           
+        </ul>
+    </li>
+    <!-- jitsi Menu  -->
+@endif

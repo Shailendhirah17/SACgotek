@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Management Dashboard - ERPV1</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="./dashboard.css">
+</head>
+<body>
+<div class="app">
+<!-- Sidebar -->
+<aside class="sidebar">
+<div class="sidebar-brand">
+<div class="logo">S</div>
+<div><h2>StudentERP</h2><span>Management Dashboard</span></div>
+</div>
+<div class="nav-section">Overview</div>
+<div class="nav-item active" data-section="dashboard"><i class="fas fa-chart-pie"></i>Dashboard</div>
+<div class="nav-item" data-section="profiles"><i class="fas fa-users"></i>Student Profiles</div>
+<div class="nav-section">Tracking</div>
+<div class="nav-item" data-section="behavior"><i class="fas fa-heart"></i>Behavior</div>
+<div class="nav-item" data-section="activities"><i class="fas fa-futbol"></i>Activities</div>
+<div class="nav-item" data-section="academics"><i class="fas fa-graduation-cap"></i>Academics</div>
+<div class="nav-item" data-section="achievements"><i class="fas fa-trophy"></i>Achievements</div>
+<div class="nav-section">Management</div>
+<div class="nav-item" data-section="communication"><i class="fas fa-envelope"></i>Communication</div>
+<div class="nav-item" data-section="library"><i class="fas fa-book"></i>Library</div>
+<div class="nav-item" data-section="fees"><i class="fas fa-wallet"></i>Fee Management</div>
+<div class="nav-section">Analytics</div>
+<div class="nav-item" data-section="engagement"><i class="fas fa-chart-line"></i>Engagement</div>
+<div class="nav-item" data-section="search"><i class="fas fa-search"></i>Smart Search</div>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+<div class="topbar">
+<h1 id="pageTitle">Dashboard Overview</h1>
+<div class="topbar-actions">
+<div class="search-box"><i class="fas fa-search"></i><input id="globalSearch" placeholder="Search students, activities..." onkeyup="handleGlobalSearch(event)"></div>
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="section active" id="sec-dashboard">
+<div class="stats-grid" id="statsGrid"></div>
+<div class="grid-2">
+<div class="card"><div class="card-header"><h3>Recent Behavior Reports</h3></div><div id="recentBehaviors"></div></div>
+<div class="card"><div class="card-header"><h3>Recent Achievements</h3></div><div id="recentAchievements"></div></div>
+</div>
+<div class="grid-2">
+<div class="card"><div class="card-header"><h3>Behavior Distribution</h3></div><div id="behaviorChart" class="chart-bar"></div></div>
+<div class="card"><div class="card-header"><h3>Activity Distribution</h3></div><div id="activityChart" class="chart-bar"></div></div>
+</div>
+</div>
+
+<!-- STUDENT PROFILES -->
+<div class="section" id="sec-profiles">
+<div class="card"><div class="card-header"><h3>All Students</h3><button class="btn btn-sm btn-ghost" onclick="loadStudents()"><i class="fas fa-sync"></i> Refresh</button></div>
+<div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Admission#</th><th>Class</th><th>Section</th><th>Email</th><th>Mobile</th><th>Actions</th></tr></thead><tbody id="studentsTable"></tbody></table></div></div>
+</div>
+
+<!-- STUDENT DETAIL (sub-view) -->
+<div class="section" id="sec-studentDetail">
+<button class="btn btn-sm btn-ghost" onclick="showSection('profiles')" style="margin-bottom:16px"><i class="fas fa-arrow-left"></i> Back</button>
+<div id="studentProfile"></div>
+</div>
+
+<!-- BEHAVIOR -->
+<div class="section" id="sec-behavior">
+<div class="card"><div class="card-header"><h3>Behavior Records</h3><button class="btn btn-sm btn-primary" onclick="openModal('behaviorModal')"><i class="fas fa-plus"></i> Add Record</button></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Type</th><th>Category</th><th>Remarks</th><th>Reported By</th><th>Date</th></tr></thead><tbody id="behaviorTable"></tbody></table></div></div>
+</div>
+
+<!-- ACTIVITIES -->
+<div class="section" id="sec-activities">
+<div class="tabs"><div class="tab active" data-filter="all">All</div><div class="tab" data-filter="sports">Sports</div><div class="tab" data-filter="extracurricular">Extracurricular</div></div>
+<div class="card"><div class="card-header"><h3>Activities & Interests</h3><button class="btn btn-sm btn-primary" onclick="openModal('activityModal')"><i class="fas fa-plus"></i> Add</button></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Type</th><th>Activity</th><th>Skill Level</th><th>Notes</th></tr></thead><tbody id="activitiesTable"></tbody></table></div></div>
+</div>
+
+<!-- ACADEMICS -->
+<div class="section" id="sec-academics">
+<div class="card"><div class="card-header"><h3>Academic Performance</h3></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Admission#</th><th>Average Marks</th><th>Performance</th></tr></thead><tbody id="academicsTable"></tbody></table></div></div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section" id="sec-achievements">
+<div class="tabs" id="achieveTabs"><div class="tab active" data-atype="">All</div><div class="tab" data-atype="academic">Academic</div><div class="tab" data-atype="sports">Sports</div><div class="tab" data-atype="extracurricular">Extracurricular</div></div>
+<div class="card"><div class="card-header"><h3>Achievements</h3><button class="btn btn-sm btn-primary" onclick="openModal('achievementModal')"><i class="fas fa-plus"></i> Add</button></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Type</th><th>Title</th><th>Description</th><th>Status</th><th>Date</th></tr></thead><tbody id="achievementsTable"></tbody></table></div></div>
+</div>
+
+<!-- COMMUNICATION -->
+<div class="section" id="sec-communication">
+<div class="card"><div class="card-header"><h3>Communication Log</h3><button class="btn btn-sm btn-primary" onclick="openModal('commModal')"><i class="fas fa-plus"></i> Send Message</button></div>
+<div class="table-wrap"><table><thead><tr><th>Channel</th><th>To</th><th>Subject</th><th>Type</th><th>Sent By</th><th>Date</th></tr></thead><tbody id="commTable"></tbody></table></div></div>
+</div>
+
+<!-- LIBRARY -->
+<div class="section" id="sec-library">
+<div class="grid-2">
+<div class="card"><div class="card-header"><h3>Books</h3></div><div class="table-wrap"><table><thead><tr><th>Title</th><th>Author</th><th>ISBN</th><th>Qty</th><th>Pending</th></tr></thead><tbody id="booksTable"></tbody></table></div></div>
+<div class="card"><div class="card-header"><h3>Recent Issues</h3></div><div class="table-wrap"><table><thead><tr><th>Book</th><th>Issued</th><th>Due</th><th>Status</th></tr></thead><tbody id="issuesTable"></tbody></table></div></div>
+</div>
+</div>
+
+<!-- FEES -->
+<div class="section" id="sec-fees">
+<div class="card"><div class="card-header"><h3>Fee Overview</h3></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Admission#</th><th>Fees Paid</th><th>Other Spending</th><th>Total</th></tr></thead><tbody id="feesTable"></tbody></table></div></div>
+</div>
+
+<!-- ENGAGEMENT -->
+<div class="section" id="sec-engagement">
+<div class="card"><div class="card-header"><h3>Student Engagement Tracking</h3></div>
+<div class="table-wrap"><table><thead><tr><th>Student</th><th>Behaviors</th><th>Activities</th><th>Achievements</th><th>Attendance</th><th>Score</th><th>Status</th></tr></thead><tbody id="engagementTable"></tbody></table></div></div>
+</div>
+
+<!-- SEARCH -->
+<div class="section" id="sec-search">
+<div class="card"><div class="card-header"><h3>Smart Search & Filters</h3></div>
+<div style="display:flex;gap:12px;margin-bottom:16px">
+<div class="search-box" style="flex:1"><i class="fas fa-search"></i><input id="smartSearchInput" placeholder="Search by name, activity, achievement..." onkeyup="handleSmartSearch(event)"></div>
+<select id="searchFilter" class="btn btn-ghost" onchange="doSmartSearch()"><option value="all">All</option><option value="students">Students</option><option value="behavior">Behavior</option><option value="achievements">Achievements</option><option value="activities">Activities</option></select>
+</div>
+<div id="searchResults"></div></div>
+</div>
+
+</main>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="behaviorModal"><div class="modal"><h3>Add Behavior Record</h3>
+<div class="form-group"><label>Student</label><select id="bm_student"></select></div>
+<div class="form-group"><label>Type</label><select id="bm_type"><option value="good">Good</option><option value="average">Average</option><option value="misbehavior">Misbehavior</option></select></div>
+<div class="form-group"><label>Category</label><select id="bm_cat"><option value="discipline">Discipline</option><option value="attitude">Attitude</option><option value="conduct">Conduct</option></select></div>
+<div class="form-group"><label>Remarks</label><textarea id="bm_remarks" rows="3"></textarea></div>
+<div class="form-actions"><button class="btn btn-ghost" onclick="closeModal('behaviorModal')">Cancel</button><button class="btn btn-primary" onclick="submitBehavior()">Save</button></div>
+</div></div>
+
+<div class="modal-overlay" id="activityModal"><div class="modal"><h3>Add Activity</h3>
+<div class="form-group"><label>Student</label><select id="am_student"></select></div>
+<div class="form-group"><label>Type</label><select id="am_type"><option value="sports">Sports</option><option value="extracurricular">Extracurricular</option></select></div>
+<div class="form-group"><label>Activity Name</label><input id="am_name" placeholder="e.g. Cricket, Dance, Coding"></div>
+<div class="form-group"><label>Skill Level</label><select id="am_level"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></div>
+<div class="form-actions"><button class="btn btn-ghost" onclick="closeModal('activityModal')">Cancel</button><button class="btn btn-primary" onclick="submitActivity()">Save</button></div>
+</div></div>
+
+<div class="modal-overlay" id="achievementModal"><div class="modal"><h3>Add Achievement</h3>
+<div class="form-group"><label>Student</label><select id="acm_student"></select></div>
+<div class="form-group"><label>Type</label><select id="acm_type"><option value="academic">Academic</option><option value="sports">Sports</option><option value="extracurricular">Extracurricular</option></select></div>
+<div class="form-group"><label>Title</label><input id="acm_title" placeholder="Achievement title"></div>
+<div class="form-group"><label>Description</label><textarea id="acm_desc" rows="2"></textarea></div>
+<div class="form-group"><label>Status</label><select id="acm_status"><option value="interested">Interested</option><option value="participated">Participated</option><option value="prize_winner">Prize Winner</option></select></div>
+<div class="form-actions"><button class="btn btn-ghost" onclick="closeModal('achievementModal')">Cancel</button><button class="btn btn-primary" onclick="submitAchievement()">Save</button></div>
+</div></div>
+
+<div class="modal-overlay" id="commModal"><div class="modal"><h3>Send Communication</h3>
+<div class="form-group"><label>Channel</label><select id="cm_channel"><option value="email">Email</option><option value="sms">SMS</option><option value="group">Group Message</option></select></div>
+<div class="form-group"><label>Event Type</label><select id="cm_event"><option value="general">General</option><option value="sports">Sports</option><option value="training">Training</option><option value="school_event">School Event</option></select></div>
+<div class="form-group"><label>Subject</label><input id="cm_subject"></div>
+<div class="form-group"><label>Message</label><textarea id="cm_message" rows="3"></textarea></div>
+<div class="form-actions"><button class="btn btn-ghost" onclick="closeModal('commModal')">Cancel</button><button class="btn btn-primary" onclick="submitComm()">Send</button></div>
+</div></div>
+
+<script src="./dashboard.js"></script>
+</body>
+</html>

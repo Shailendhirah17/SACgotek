@@ -1,0 +1,7 @@
+{
+    "AdvancedHrPortal": {
+        "versions": ["1.0.0"],
+        "url": ["localhost"],
+        "notes": ["Advanced Staff Management & HR Portal Module"]
+    }
+}

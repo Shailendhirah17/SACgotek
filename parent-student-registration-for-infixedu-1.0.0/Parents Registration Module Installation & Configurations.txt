@@ -1,0 +1,5 @@
+
+Parents Registration Module Installation & Configurations
+
+
+See the documentations: http://ticket.spondonit.com/help-center/articles/1/2/10/parents-registration-module-installation-and-configurations

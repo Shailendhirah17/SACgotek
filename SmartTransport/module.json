@@ -1,0 +1,13 @@
+{
+    "name": "SmartTransport",
+    "alias": "smarttransport",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SmartTransport\\Providers\\SmartTransportServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

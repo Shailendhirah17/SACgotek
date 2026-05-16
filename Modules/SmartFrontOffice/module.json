@@ -1,0 +1,13 @@
+{
+    "name": "SmartFrontOffice",
+    "alias": "smartfrontoffice",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SmartFrontOffice\\Providers\\SmartFrontOfficeServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

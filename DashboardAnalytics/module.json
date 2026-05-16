@@ -1,0 +1,13 @@
+{
+    "name": "DashboardAnalytics",
+    "alias": "dashboardanalytics",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\DashboardAnalytics\\Providers\\DashboardAnalyticsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

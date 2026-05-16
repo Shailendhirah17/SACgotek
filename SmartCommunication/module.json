@@ -1,0 +1,13 @@
+{
+    "name": "SmartCommunication",
+    "alias": "smartcommunication",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SmartCommunication\\Providers\\SmartCommunicationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

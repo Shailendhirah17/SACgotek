@@ -1,0 +1,13 @@
+{
+    "name": "AdvancedHrPortal",
+    "alias": "advancedhrportal",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AdvancedHrPortal\\Providers\\AdvancedHrPortalServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,13 @@
+{
+    "name": "AdvancedExamPortal",
+    "alias": "advancedexamportal",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AdvancedExamPortal\\Providers\\AdvancedExamPortalServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,7 @@
+{
+    "AdvancedStudentPortal": {
+        "versions": ["1.0.0"],
+        "url": ["localhost"],
+        "notes": ["Advanced Student Management Portal Module"]
+    }
+}

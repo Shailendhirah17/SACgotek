@@ -1,0 +1,13 @@
+{
+    "name": "AutomatedTimetable",
+    "alias": "automatedtimetable",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AutomatedTimetable\\Providers\\AutomatedTimetableServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
