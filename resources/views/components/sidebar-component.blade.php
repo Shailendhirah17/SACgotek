@@ -28,12 +28,12 @@
             <a href="{{ url('/') }}" id="admin-dashboard">
         @endif
         @if (!is_null($school_config->logo))
-            <div class="sac-sidebar-brand" style="display: flex; align-items: center; padding: 5px 0; justify-content: center; width: 100%;">
-                <img src="{{ asset('public/uploads/settings/logo.png') }}?v={{ time() }}" alt="SAC Logo" style="max-height: 40px; max-width: 170px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.45)); margin: 0 auto; transition: all 0.3s ease;">
+            <div class="sac-sidebar-brand" style="display: flex; align-items: center; padding: 8px 0; justify-content: center; width: 100%;">
+                <img src="{{ asset('public/uploads/settings/logo.png') }}?v={{ time() }}" alt="SAC Logo" style="max-height: 52px; max-width: 190px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.45)); margin: 0 auto; transition: all 0.3s ease;">
             </div>
         @else
-            <div class="sac-sidebar-brand" style="display: flex; align-items: center; padding: 5px 0; justify-content: center; width: 100%;">
-                <img src="{{ asset('public/uploads/settings/logo.png') }}?v={{ time() }}" alt="SAC Logo" style="max-height: 40px; max-width: 170px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.45)); margin: 0 auto; transition: all 0.3s ease;">
+            <div class="sac-sidebar-brand" style="display: flex; align-items: center; padding: 8px 0; justify-content: center; width: 100%;">
+                <img src="{{ asset('public/uploads/settings/logo.png') }}?v={{ time() }}" alt="SAC Logo" style="max-height: 52px; max-width: 190px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.45)); margin: 0 auto; transition: all 0.3s ease;">
             </div>
         @endif
         </a>
