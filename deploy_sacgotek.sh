@@ -18,6 +18,10 @@ FOOTER_LOCAL="resources/views/backEnd/partials/footer.blade.php"
 LOGIN_CONTROLLER_LOCAL="app/Http/Controllers/Auth/LoginController.php"
 WEB_ROUTES_LOCAL="routes/web.php"
 TENANT_ROUTES_LOCAL="routes/tenant.php"
+SIDEBAR_COMP_LOCAL="resources/views/components/sidebar-component.blade.php"
+SIDEBAR_COPY_LOCAL="resources/views/backEnd/partials/sidebar_copy.blade.php"
+MENU_LOCAL="resources/views/backEnd/partials/menu.blade.php"
+LOGO_LOCAL="public/uploads/settings/logo.png"
 
 # Subdomains remote roots
 ROOT1="domains/test1-technosprint.online/public_html/test-sacgotek"
@@ -87,6 +91,26 @@ deploy_to_subdomain() {
     echo "📤 Uploading LoginController.php..."
     sshpass -p "$PASS" scp -P "$PORT" "$LOGIN_CONTROLLER_LOCAL" "$USER@$HOST:$remote_root/app/Http/Controllers/Auth/LoginController.php"
     if [ $? -eq 0 ]; then echo "✅ LoginController.php uploaded successfully!"; else echo "❌ Failed to upload LoginController.php"; fi
+
+    # Upload sidebar-component.blade.php
+    echo "📤 Uploading sidebar-component.blade.php..."
+    sshpass -p "$PASS" scp -P "$PORT" "$SIDEBAR_COMP_LOCAL" "$USER@$HOST:$remote_root/resources/views/components/sidebar-component.blade.php"
+    if [ $? -eq 0 ]; then echo "✅ sidebar-component.blade.php uploaded successfully!"; else echo "❌ Failed to upload sidebar-component.blade.php"; fi
+
+    # Upload sidebar_copy.blade.php
+    echo "📤 Uploading sidebar_copy.blade.php..."
+    sshpass -p "$PASS" scp -P "$PORT" "$SIDEBAR_COPY_LOCAL" "$USER@$HOST:$remote_root/resources/views/backEnd/partials/sidebar_copy.blade.php"
+    if [ $? -eq 0 ]; then echo "✅ sidebar_copy.blade.php uploaded successfully!"; else echo "❌ Failed to upload sidebar_copy.blade.php"; fi
+
+    # Upload menu.blade.php
+    echo "📤 Uploading menu.blade.php..."
+    sshpass -p "$PASS" scp -P "$PORT" "$MENU_LOCAL" "$USER@$HOST:$remote_root/resources/views/backEnd/partials/menu.blade.php"
+    if [ $? -eq 0 ]; then echo "✅ menu.blade.php uploaded successfully!"; else echo "❌ Failed to upload menu.blade.php"; fi
+
+    # Upload logo.png
+    echo "📤 Uploading logo.png..."
+    sshpass -p "$PASS" scp -P "$PORT" "$LOGO_LOCAL" "$USER@$HOST:$remote_root/public/uploads/settings/logo.png"
+    if [ $? -eq 0 ]; then echo "✅ logo.png uploaded successfully!"; else echo "❌ Failed to upload logo.png"; fi
 
     # Clear Laravel caches remote
     echo "⚡ Busting Laravel cache & view compiling..."
