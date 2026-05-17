@@ -368,11 +368,19 @@ $ttl_rtl = userRtlLtl();
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
-                        <!-- Hexagonal glowing shield -->
-                        <polygon points="50,6 93,28 93,72 50,94 7,72 7,28" fill="none" stroke="url(#sacGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#sacGlow)" />
-                        <!-- Futuristic interlocking SAC monogram -->
-                        <path d="M30 38 Q 42 22, 60 26 T 52 48 T 68 62 C 60 78, 40 76, 32 60" fill="none" stroke="url(#sacGrad)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <line x1="45" y1="46" x2="57" y2="46" stroke="url(#sacGrad)" stroke-width="6" stroke-linecap="round" />
+                        <!-- Outer Academic Circular Crest -->
+                        <circle cx="50" cy="50" r="44" fill="none" stroke="url(#sacGrad)" stroke-width="2" stroke-dasharray="6 3" stroke-opacity="0.6" filter="url(#sacGlow)" />
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="url(#sacGrad)" stroke-width="1" stroke-opacity="0.3" />
+                        
+                        <!-- Graduation Cap (Mortarboard) -->
+                        <polygon points="50,16 84,26 50,36 16,26" fill="url(#sacGrad)" fill-opacity="0.15" stroke="url(#sacGrad)" stroke-width="3" stroke-linejoin="round" filter="url(#sacGlow)" />
+                        <path d="M30,30 L30,44 C30,50 70,50 70,44 L70,30" fill="none" stroke="url(#sacGrad)" stroke-width="3" stroke-linecap="round" />
+                        <path d="M50,26 L22,32 L20,46 C20,49 18,49 18,46 L18,34" fill="none" stroke="url(#sacGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+                        <!-- Open Book Motif representing Study & Wisdom -->
+                        <path d="M50,76 C35,72 20,76 20,76 L20,54 C20,54 35,50 50,54 Z" fill="url(#sacGrad)" fill-opacity="0.1" stroke="url(#sacGrad)" stroke-width="3" stroke-linejoin="round" />
+                        <path d="M50,76 C65,72 80,76 80,76 L80,54 C80,54 65,50 50,54 Z" fill="url(#sacGrad)" fill-opacity="0.1" stroke="url(#sacGrad)" stroke-width="3" stroke-linejoin="round" filter="url(#sacGlow)" />
+                        <line x1="50" y1="54" x2="50" y2="76" stroke="url(#sacGrad)" stroke-width="2.5" stroke-linecap="round" />
                     </svg>
                     <h1 class="brand-title">SAC</h1>
                     <h2 class="brand-subtitle">Smart ERP Portal</h2>
