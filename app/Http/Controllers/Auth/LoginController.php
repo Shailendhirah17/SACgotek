@@ -594,9 +594,6 @@ class LoginController extends Controller
             }
         }
         $data['system_setting'] = SmGeneralSettings::where('school_id',$school->id)->first();
-        if (generalSetting() && generalSetting()->active_theme == 'edulia') {
-            return view('frontEnd.theme.'.activeTheme().'.login.login', $data);
-        }
         return view('auth.loginCodeCanyon', $data);
     }
 
@@ -625,9 +622,6 @@ class LoginController extends Controller
             'user_7' => $users->where('role_id', 7)->first(),
             'user_8' => $users->where('role_id', 8)->first(),
         ];
-        if (generalSetting() && generalSetting()->active_theme == 'edulia') {
-            return view('frontEnd.theme.'.activeTheme().'.login.login', ['css' => $css])->with($data);
-        }
         return view('auth.loginCodeCanyon', ['css' => $css])->with($data);
     }
 

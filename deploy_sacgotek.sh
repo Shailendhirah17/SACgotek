@@ -15,6 +15,7 @@ LAYOUT_APP_LOCAL="resources/views/layouts/app.blade.php"
 FRONT_MASTER_LOCAL="resources/views/frontEnd/home/front_master.blade.php"
 HEADER_LOCAL="resources/views/backEnd/partials/header.blade.php"
 FOOTER_LOCAL="resources/views/backEnd/partials/footer.blade.php"
+LOGIN_CONTROLLER_LOCAL="app/Http/Controllers/Auth/LoginController.php"
 WEB_ROUTES_LOCAL="routes/web.php"
 TENANT_ROUTES_LOCAL="routes/tenant.php"
 
@@ -81,6 +82,11 @@ deploy_to_subdomain() {
     echo "📤 Uploading routes/tenant.php..."
     sshpass -p "$PASS" scp -P "$PORT" "$TENANT_ROUTES_LOCAL" "$USER@$HOST:$remote_root/routes/tenant.php"
     if [ $? -eq 0 ]; then echo "✅ tenant.php uploaded successfully!"; else echo "❌ Failed to upload tenant.php"; fi
+
+    # Upload LoginController.php
+    echo "📤 Uploading LoginController.php..."
+    sshpass -p "$PASS" scp -P "$PORT" "$LOGIN_CONTROLLER_LOCAL" "$USER@$HOST:$remote_root/app/Http/Controllers/Auth/LoginController.php"
+    if [ $? -eq 0 ]; then echo "✅ LoginController.php uploaded successfully!"; else echo "❌ Failed to upload LoginController.php"; fi
 
     # Clear Laravel caches remote
     echo "⚡ Busting Laravel cache & view compiling..."
