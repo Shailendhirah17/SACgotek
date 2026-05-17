@@ -466,7 +466,7 @@ $ttl_rtl = userRtlLtl();
         </div>
 
         <div class="copyright-text">
-            {!! generalSetting()->copyright_text !!}
+            Copyright &copy; {{ date('Y') }} SAC. All rights reserved.
         </div>
     </div>
 
