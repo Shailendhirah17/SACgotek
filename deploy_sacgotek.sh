@@ -22,6 +22,8 @@ SIDEBAR_COMP_LOCAL="resources/views/components/sidebar-component.blade.php"
 SIDEBAR_COPY_LOCAL="resources/views/backEnd/partials/sidebar_copy.blade.php"
 MENU_LOCAL="resources/views/backEnd/partials/menu.blade.php"
 LOGO_LOCAL="public/uploads/settings/logo.png"
+FAVICON_SETTINGS_LOCAL="public/uploads/settings/favicon.png"
+FAVICON_BACKEND_LOCAL="public/backEnd/img/favicon.png"
 
 # Subdomains remote roots
 ROOT1="domains/test1-technosprint.online/public_html/test-sacgotek"
@@ -111,6 +113,16 @@ deploy_to_subdomain() {
     echo "📤 Uploading logo.png..."
     sshpass -p "$PASS" scp -P "$PORT" "$LOGO_LOCAL" "$USER@$HOST:$remote_root/public/uploads/settings/logo.png"
     if [ $? -eq 0 ]; then echo "✅ logo.png uploaded successfully!"; else echo "❌ Failed to upload logo.png"; fi
+
+    # Upload settings favicon.png
+    echo "📤 Uploading settings favicon.png..."
+    sshpass -p "$PASS" scp -P "$PORT" "$FAVICON_SETTINGS_LOCAL" "$USER@$HOST:$remote_root/public/uploads/settings/favicon.png"
+    if [ $? -eq 0 ]; then echo "✅ settings favicon.png uploaded successfully!"; else echo "❌ Failed to upload settings favicon.png"; fi
+
+    # Upload backend favicon.png
+    echo "📤 Uploading backend favicon.png..."
+    sshpass -p "$PASS" scp -P "$PORT" "$FAVICON_BACKEND_LOCAL" "$USER@$HOST:$remote_root/public/backEnd/img/favicon.png"
+    if [ $? -eq 0 ]; then echo "✅ backend favicon.png uploaded successfully!"; else echo "❌ Failed to upload backend favicon.png"; fi
 
     # Clear Laravel caches remote
     echo "⚡ Busting Laravel cache & view compiling..."

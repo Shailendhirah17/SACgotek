@@ -12,7 +12,7 @@ $ttl_rtl = userRtlLtl();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{ asset(generalSetting()->favicon) }}" type="image/png" />
+    <link rel="icon" href="{{ asset(generalSetting()->favicon) }}?v={{ time() }}" type="image/png" />
     <title>SAC Portal | @lang('auth.login')</title>
     <meta name="_token" content="{!! csrf_token() !!}" />
     

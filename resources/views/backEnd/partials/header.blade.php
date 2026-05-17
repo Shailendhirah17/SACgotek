@@ -10,9 +10,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     @if( ! is_null(schoolConfig() ))
-        <link rel="icon" href="{{asset(schoolConfig()->favicon)}}" type="image/png"/>
+        <link rel="icon" href="{{asset(schoolConfig()->favicon)}}?v={{ time() }}" type="image/png"/>
     @else
-        <link rel="icon" href="{{asset('uploads/settings/favicon.png')}}" type="image/png"/>
+        <link rel="icon" href="{{asset('public/uploads/settings/favicon.png')}}?v={{ time() }}" type="image/png"/>
     @endif
     <title>{{@schoolConfig()->school_name ? @schoolConfig()->school_name : 'SAC ERP'}} |
         @yield('title')
