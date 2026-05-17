@@ -9,6 +9,24 @@ $db_name = 'infixedu';
 $db_user = 'root';
 $db_pass = '';
 
+// Load database configurations dynamically from Laravel's .env
+$env_path = dirname(__DIR__) . '/.env';
+if (file_exists($env_path)) {
+    $lines = file($env_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        $parts = explode('=', $line, 2);
+        if (count($parts) === 2) {
+            $name = trim($parts[0]);
+            $value = trim(trim($parts[1]), '"\'');
+            if ($name === 'DB_HOST') $db_host = $value;
+            if ($name === 'DB_DATABASE') $db_name = $value;
+            if ($name === 'DB_USERNAME') $db_user = $value;
+            if ($name === 'DB_PASSWORD') $db_pass = $value;
+        }
+    }
+}
+
 @ini_set('max_execution_time', '3600');
 @ini_set('memory_limit', '512M');
 

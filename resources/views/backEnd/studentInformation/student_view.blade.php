@@ -48,6 +48,401 @@
         .table thead th {
             font-size: 12px !important;
         }
+        
+        /* Scoped custom dashboard styling */
+        .custom-dashboard-wrapper {
+            --bg-dash: #0f111a;
+            --card-dash: #161824;
+            --card-dash2: #1f2235;
+            --accent-dash: #6c5ce7;
+            --accent-dash2: #a29bfe;
+            --green-dash: #00b894;
+            --red-dash: #e17055;
+            --orange-dash: #fdcb6e;
+            --blue-dash: #74b9ff;
+            --text-dash: #f3f4f6;
+            --text-dash2: #9ca3af;
+            --border-dash: #2d3142;
+            --shadow-dash: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --radius-dash: 16px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dash);
+        }
+
+        .custom-dashboard-wrapper .glass-card {
+            background: var(--card-dash) !important;
+            border: 1px solid var(--border-dash) !important;
+            border-radius: var(--radius-dash) !important;
+            padding: 24px !important;
+            margin-bottom: 24px !important;
+            box-shadow: var(--shadow-dash) !important;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .custom-dashboard-wrapper .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            border-color: rgba(108, 92, 231, 0.5) !important;
+        }
+
+        .custom-dashboard-wrapper .glass-card h3 {
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 20px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            border-bottom: 1px solid rgba(45, 49, 66, 0.5) !important;
+            padding-bottom: 12px !important;
+        }
+
+        .custom-dashboard-wrapper .stats-grid-dash {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 20px !important;
+            margin-bottom: 24px !important;
+        }
+
+        .custom-dashboard-wrapper .stat-card-dash {
+            background: var(--card-dash2) !important;
+            border: 1px solid var(--border-dash) !important;
+            border-radius: 12px !important;
+            padding: 16px 20px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            position: relative !important;
+        }
+
+        .custom-dashboard-wrapper .stat-card-dash .stat-value {
+            font-size: 32px !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+            margin-bottom: 4px !important;
+        }
+
+        .custom-dashboard-wrapper .stat-card-dash .stat-label {
+            font-size: 13px !important;
+            color: var(--text-dash2) !important;
+            font-weight: 500 !important;
+        }
+
+        .custom-dashboard-wrapper .stat-card-dash .stat-icon {
+            position: absolute !important;
+            right: 20px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 28px !important;
+            opacity: 0.15 !important;
+        }
+
+        .custom-dashboard-wrapper .grid-2-dash {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+            gap: 24px !important;
+        }
+
+        .custom-dashboard-wrapper .grid-3-dash {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+            gap: 20px !important;
+        }
+
+        /* Badges */
+        .custom-dashboard-wrapper .badge-dash {
+            padding: 4px 10px !important;
+            border-radius: 6px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            display: inline-block !important;
+            line-height: 1.2 !important;
+            text-transform: capitalize !important;
+        }
+
+        .custom-dashboard-wrapper .badge-good {
+            background: rgba(0, 184, 148, 0.15) !important;
+            color: var(--green-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .badge-average {
+            background: rgba(253, 203, 110, 0.15) !important;
+            color: var(--orange-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .badge-misbehavior {
+            background: rgba(225, 112, 85, 0.15) !important;
+            color: var(--red-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .badge-prize {
+            background: rgba(108, 92, 231, 0.15) !important;
+            color: var(--accent-dash2) !important;
+        }
+
+        .custom-dashboard-wrapper .badge-participated {
+            background: rgba(116, 185, 255, 0.15) !important;
+            color: var(--blue-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .badge-interested {
+            background: rgba(156, 163, 175, 0.15) !important;
+            color: var(--text-dash2) !important;
+        }
+        
+        .custom-dashboard-wrapper .badge-sports {
+            background: rgba(0, 184, 148, 0.15) !important;
+            color: var(--green-dash) !important;
+        }
+        
+        .custom-dashboard-wrapper .badge-extracurricular {
+            background: rgba(108, 92, 231, 0.15) !important;
+            color: var(--accent-dash2) !important;
+        }
+        
+        .custom-dashboard-wrapper .badge-academic {
+            background: rgba(116, 185, 255, 0.15) !important;
+            color: var(--blue-dash) !important;
+        }
+
+        /* Timeline */
+        .custom-dashboard-wrapper .timeline-dash {
+            border-left: 2px solid var(--border-dash) !important;
+            padding-left: 20px !important;
+            margin-left: 10px !important;
+            position: relative !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash {
+            position: relative !important;
+            margin-bottom: 24px !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash::before {
+            content: '' !important;
+            position: absolute !important;
+            left: -26px !important;
+            top: 4px !important;
+            width: 10px !important;
+            height: 10px !important;
+            border-radius: 50% !important;
+            background: var(--accent-dash) !important;
+            border: 2px solid var(--card-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash.good::before {
+            background: var(--green-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash.average::before {
+            background: var(--orange-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash.misbehavior::before {
+            background: var(--red-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash .time-dash {
+            font-size: 11px !important;
+            color: var(--text-dash2) !important;
+            margin-bottom: 4px !important;
+            font-weight: 500 !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash .title-dash {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 4px !important;
+        }
+
+        .custom-dashboard-wrapper .timeline-item-dash .desc-dash {
+            font-size: 13px !important;
+            color: var(--text-dash2) !important;
+        }
+
+        /* Form Styles */
+        .custom-dashboard-wrapper .form-glass {
+            background: rgba(22, 24, 36, 0.4) !important;
+            border: 1px solid rgba(45, 49, 66, 0.8) !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+        }
+
+        .custom-dashboard-wrapper .form-group-dash {
+            margin-bottom: 16px !important;
+        }
+
+        .custom-dashboard-wrapper .form-group-dash label {
+            display: block !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            color: var(--text-dash2) !important;
+            margin-bottom: 6px !important;
+            text-transform: uppercase !important;
+        }
+
+        .custom-dashboard-wrapper .form-group-dash input,
+        .custom-dashboard-wrapper .form-group-dash select,
+        .custom-dashboard-wrapper .form-group-dash textarea {
+            width: 100% !important;
+            padding: 10px 14px !important;
+            background: var(--card-dash2) !important;
+            border: 1px solid var(--border-dash) !important;
+            border-radius: 8px !important;
+            color: #ffffff !important;
+            font-size: 13px !important;
+            outline: none !important;
+        }
+
+        .custom-dashboard-wrapper .form-group-dash input:focus,
+        .custom-dashboard-wrapper .form-group-dash select:focus,
+        .custom-dashboard-wrapper .form-group-dash textarea:focus {
+            border-color: var(--accent-dash) !important;
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2) !important;
+        }
+
+        .custom-dashboard-wrapper .btn-dash {
+            width: 100% !important;
+            padding: 12px !important;
+            border-radius: 8px !important;
+            border: none !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.2s !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+        }
+
+        .custom-dashboard-wrapper .btn-dash-primary {
+            background: linear-gradient(135deg, var(--accent-dash), #8b5cf6) !important;
+            color: #ffffff !important;
+        }
+
+        .custom-dashboard-wrapper .btn-dash-primary:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4) !important;
+        }
+
+        /* Engagement score ring widget */
+        .custom-dashboard-wrapper .score-ring-container {
+            display: flex !important;
+            align-items: center !important;
+            gap: 20px !important;
+        }
+
+        .custom-dashboard-wrapper .score-ring {
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 24px !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5) !important;
+        }
+
+        .custom-dashboard-wrapper .score-ring.score-high {
+            border: 6px solid var(--green-dash) !important;
+            background: rgba(0, 184, 148, 0.1) !important;
+        }
+
+        .custom-dashboard-wrapper .score-ring.score-mid {
+            border: 6px solid var(--orange-dash) !important;
+            background: rgba(253, 203, 110, 0.1) !important;
+        }
+
+        .custom-dashboard-wrapper .score-ring.score-low {
+            border: 6px solid var(--red-dash) !important;
+            background: rgba(225, 112, 85, 0.1) !important;
+        }
+
+        /* Progress bar inside custom dashboard */
+        .custom-dashboard-wrapper .progress-bar-dash {
+            background: var(--card-dash2) !important;
+            border-radius: 8px !important;
+            height: 10px !important;
+            overflow: hidden !important;
+            margin-top: 8px !important;
+        }
+
+        .custom-dashboard-wrapper .progress-fill-dash {
+            height: 100% !important;
+            border-radius: 8px !important;
+            transition: width 0.6s ease !important;
+        }
+
+        .custom-dashboard-wrapper .progress-fill-dash.purple {
+            background: linear-gradient(90deg, var(--accent-dash), var(--accent-dash2)) !important;
+        }
+
+        .custom-dashboard-wrapper .progress-fill-dash.green {
+            background: linear-gradient(90deg, #00b894, #55efc4) !important;
+        }
+
+        /* Library and Fees list styling */
+        .custom-dashboard-wrapper .spending-item {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 12px !important;
+            background: var(--card-dash2) !important;
+            border-radius: 8px !important;
+            margin-bottom: 10px !important;
+            border-left: 3px solid var(--accent-dash) !important;
+        }
+
+        .custom-dashboard-wrapper .spending-title {
+            font-weight: 600 !important;
+            font-size: 13px !important;
+        }
+
+        .custom-dashboard-wrapper .spending-desc {
+            font-size: 11px !important;
+            color: var(--text-dash2) !important;
+        }
+
+        .custom-dashboard-wrapper .spending-amount {
+            font-size: 15px !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+        }
+
+        .custom-dashboard-wrapper .table-wrap-dash {
+            overflow-x: auto !important;
+        }
+
+        .custom-dashboard-wrapper table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+        }
+
+        .custom-dashboard-wrapper th {
+            text-align: left !important;
+            padding: 12px 16px !important;
+            font-size: 11px !important;
+            text-transform: uppercase !important;
+            color: var(--text-dash2) !important;
+            border-bottom: 1px solid var(--border-dash) !important;
+            font-weight: 600 !important;
+        }
+
+        .custom-dashboard-wrapper td {
+            padding: 12px 16px !important;
+            font-size: 13px !important;
+            border-bottom: 1px solid rgba(45, 49, 66, 0.4) !important;
+            color: var(--text-dash) !important;
+        }
+
+        .custom-dashboard-wrapper tr:hover td {
+            background: rgba(108, 92, 231, 0.05) !important;
+        }
     </style>
 @endpush
 
@@ -98,6 +493,71 @@
 
                 @php
                     $type = isset($type) ? $type : null;
+                    
+                    $student_id = $student_detail->id;
+                    $user_id = $student_detail->user_id;
+
+                    // Fetch Behavior Tracking
+                    $behaviors = DB::table('sm_student_behaviors')
+                        ->where('student_id', $student_id)
+                        ->orderBy('reported_date', 'desc')
+                        ->get();
+
+                    // Fetch Activities & Interests
+                    $activities = DB::table('sm_student_activities')
+                        ->where('student_id', $student_id)
+                        ->orderBy('activity_name', 'asc')
+                        ->get();
+
+                    // Fetch Achievements
+                    $achievements = DB::table('sm_student_achievements')
+                        ->where('student_id', $student_id)
+                        ->orderBy('achievement_date', 'desc')
+                        ->get();
+
+                    // Fetch Spending
+                    $spending = DB::table('sm_student_spending')
+                        ->where('student_id', $student_id)
+                        ->orderBy('spending_date', 'desc')
+                        ->get();
+                    $total_spending = $spending->sum('amount');
+
+                    // Fetch Communications
+                    $comms = DB::table('sm_student_communications')
+                        ->where('student_id', $student_id)
+                        ->orWhereNull('student_id')
+                        ->orderBy('sent_at', 'desc')
+                        ->take(15)
+                        ->get();
+
+                    // Fetch Library Issues (linked to user_id via library membership)
+                    $library_issues = DB::table('sm_book_issues as bi')
+                        ->select('bi.*', 'b.book_title', 'b.author_name', 'b.isbn_no')
+                        ->join('sm_books as b', 'bi.book_id', '=', 'b.id')
+                        ->join('sm_library_members as lm', 'bi.member_id', '=', 'lm.id')
+                        ->where('lm.student_staff_id', $user_id)
+                        ->orderBy('bi.given_date', 'desc')
+                        ->get();
+
+                    // Calculate Engagement Score
+                    $present_count = DB::table('sm_student_attendances')
+                        ->where('student_id', $student_id)
+                        ->where('attendance_type', 'P')
+                        ->count();
+
+                    $attendance_total = DB::table('sm_student_attendances')
+                        ->where('student_id', $student_id)
+                        ->count();
+
+                    $behavior_count = $behaviors->count();
+                    $activity_count = $activities->count();
+                    $achievement_count = $achievements->count();
+
+                    $engagement_score = ($behavior_count * 10) + ($activity_count * 15) + ($achievement_count * 25) + ($present_count * 2);
+                    if ($engagement_score > 100) $engagement_score = 100; // Cap at 100
+
+                    $engagement_status = $engagement_score >= 50 ? 'Highly Active' : ($engagement_score >= 20 ? 'Active' : 'Inactive');
+                    $engagement_class = $engagement_score >= 50 ? 'badge-good' : ($engagement_score >= 20 ? 'badge-average' : 'badge-misbehavior');
                 @endphp
 
                 <!-- Start Student Details -->
@@ -173,6 +633,25 @@
                                 </li>
                             @endif
     
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customBehavior" role="tab" data-toggle="tab"><i class="fas fa-heart mr-2"></i>Behavior Tracking</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customActivities" role="tab" data-toggle="tab"><i class="fas fa-futbol mr-2"></i>Activities & Interests</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customAchievements" role="tab" data-toggle="tab"><i class="fas fa-trophy mr-2"></i>Achievements & Engagement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customLibrary" role="tab" data-toggle="tab"><i class="fas fa-book mr-2"></i>Library Tracker</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customSpending" role="tab" data-toggle="tab"><i class="fas fa-wallet mr-2"></i>Fee Spending & Canteen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customComms" role="tab" data-toggle="tab"><i class="fas fa-envelope mr-2"></i>Communication Log</a>
+                            </li>
+                            
                             <li class="nav-item edit-button">
                                 @if (userPermission('student_edit'))
                                     <a href="{{ route('student_edit', [@$student_detail->id]) }}"
@@ -447,6 +926,542 @@
                                 </div>
                             @endif
                             {{-- end marksheet tab  --}}
+                            
+                            <!-- Custom Behavior Tab Pane -->
+                            <div role="tabpanel" class="tab-pane fade" id="customBehavior">
+                                <div class="custom-dashboard-wrapper">
+                                    <div class="stats-grid-dash">
+                                        <div class="stat-card-dash">
+                                            <span class="stat-value">{{ $behaviors->where('behavior_type', 'good')->count() }}</span>
+                                            <span class="stat-label">Good Behaviors</span>
+                                            <i class="fas fa-smile stat-icon" style="color: var(--green-dash)"></i>
+                                        </div>
+                                        <div class="stat-card-dash">
+                                            <span class="stat-value">{{ $behaviors->where('behavior_type', 'average')->count() }}</span>
+                                            <span class="stat-label">Average Behaviors</span>
+                                            <i class="fas fa-meh stat-icon" style="color: var(--orange-dash)"></i>
+                                        </div>
+                                        <div class="stat-card-dash">
+                                            <span class="stat-value">{{ $behaviors->where('behavior_type', 'misbehavior')->count() }}</span>
+                                            <span class="stat-label">Misbehaviors</span>
+                                            <i class="fas fa-frown stat-icon" style="color: var(--red-dash)"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-heart text-danger"></i> Behavior Logs & Remarks</h3>
+                                                @if($behaviors->count() > 0)
+                                                    <div class="timeline-dash">
+                                                        @foreach($behaviors as $b)
+                                                            <div class="timeline-item-dash {{ $b->behavior_type }}">
+                                                                <div class="time-dash"><i class="far fa-calendar-alt"></i> {{ dateConvert($b->reported_date) }}</div>
+                                                                <div class="title-dash">
+                                                                    <span class="badge-dash badge-{{ $b->behavior_type }}">{{ ucfirst($b->behavior_type) }}</span> 
+                                                                    - {{ ucfirst($b->category) }}
+                                                                </div>
+                                                                <div class="desc-dash">
+                                                                    <strong>Remarks:</strong> {{ $b->remarks }}<br>
+                                                                    <small class="text-muted">Reported By: {{ $b->reported_by }}</small>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <div class="text-center py-4">
+                                                        <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
+                                                        <p class="text-muted">No behavior records logged yet.</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-5">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-plus-circle text-primary"></i> Log New Behavior</h3>
+                                                <form id="behaviorForm" class="form-glass" onsubmit="submitCustomForm(event, 'behaviors', 'behaviorForm')">
+                                                    <div class="form-group-dash">
+                                                        <label>Behavior Type</label>
+                                                        <select name="behavior_type" required>
+                                                            <option value="good">Good</option>
+                                                            <option value="average">Average</option>
+                                                            <option value="misbehavior">Misbehavior</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Category</label>
+                                                        <select name="category" required>
+                                                            <option value="discipline">Discipline</option>
+                                                            <option value="attitude">Attitude</option>
+                                                            <option value="conduct">Conduct</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Remarks</label>
+                                                        <textarea name="remarks" rows="4" placeholder="Enter behavioral remarks..." required></textarea>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Reported By</label>
+                                                        <input type="text" name="reported_by" value="{{ Auth::user()->full_name ?? 'Admin' }}" required>
+                                                    </div>
+                                                    <button type="submit" class="btn-dash btn-dash-primary">
+                                                        <i class="fas fa-save"></i> Save Behavior Record
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom Activities Tab Pane -->
+                            <div role="tabpanel" class="tab-pane fade" id="customActivities">
+                                <div class="custom-dashboard-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-futbol text-success"></i> Sports & Extracurricular Activities</h3>
+                                                @if($activities->count() > 0)
+                                                    <div class="grid-2-dash">
+                                                        @foreach($activities as $act)
+                                                            <div class="stat-card-dash" style="border-left: 4px solid var(--accent-dash)">
+                                                                <span class="stat-value" style="font-size: 18px; margin-bottom: 8px;">
+                                                                    {{ $act->activity_name }}
+                                                                </span>
+                                                                <span class="stat-label mb-2">
+                                                                    <span class="badge-dash badge-{{ $act->activity_type }}">{{ ucfirst($act->activity_type) }}</span>
+                                                                    <span class="badge-dash badge-prize ml-1">{{ ucfirst($act->skill_level) }}</span>
+                                                                </span>
+                                                                @if($act->notes)
+                                                                    <p class="text-muted" style="font-size: 12px; margin: 0; font-style: italic">
+                                                                        "{{ $act->notes }}"
+                                                                    </p>
+                                                                @endif
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <div class="text-center py-4">
+                                                        <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
+                                                        <p class="text-muted">No activities or interests registered.</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-5">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-plus-circle text-primary"></i> Add Activity / Interest</h3>
+                                                <form id="activityForm" class="form-glass" onsubmit="submitCustomForm(event, 'activities', 'activityForm')">
+                                                    <div class="form-group-dash">
+                                                        <label>Activity Type</label>
+                                                        <select name="activity_type" required>
+                                                            <option value="sports">Sports</option>
+                                                            <option value="extracurricular">Extracurricular</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Activity Name</label>
+                                                        <input type="text" name="activity_name" placeholder="e.g. Cricket, Dance, Coding, Music" required>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Skill Level</label>
+                                                        <select name="skill_level" required>
+                                                            <option value="beginner">Beginner</option>
+                                                            <option value="intermediate">Intermediate</option>
+                                                            <option value="advanced">Advanced</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Notes / Goals</label>
+                                                        <textarea name="notes" rows="3" placeholder="Enter student goals or coach notes..."></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn-dash btn-dash-primary">
+                                                        <i class="fas fa-plus"></i> Add Activity Record
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom Achievements Tab Pane -->
+                            <div role="tabpanel" class="tab-pane fade" id="customAchievements">
+                                <div class="custom-dashboard-wrapper">
+                                    <div class="row mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="glass-card score-ring-container">
+                                                <div class="score-ring {{ $engagement_class }}">
+                                                    {{ $engagement_score }}
+                                                </div>
+                                                <div>
+                                                    <h4 style="margin: 0 0 4px; font-weight: 700;">Student Engagement Score</h4>
+                                                    <p class="text-muted" style="margin: 0; font-size: 13px;">
+                                                        Status: <strong class="{{ $engagement_class }}">{{ $engagement_status }}</strong>
+                                                    </p>
+                                                    <div class="progress-bar-dash" style="width: 200px;">
+                                                        <div class="progress-fill-dash green" style="width: {{ $engagement_score }}%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="glass-card">
+                                                <h4 style="margin: 0 0 10px; font-weight: 700;"><i class="fas fa-chart-line text-info"></i> Performance Score Matrix</h4>
+                                                <div style="font-size: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                                    <div><i class="fas fa-check-circle text-success"></i> Behavior Log Weight: <strong>+10 pts</strong></div>
+                                                    <div><i class="fas fa-check-circle text-success"></i> Activities Weight: <strong>+15 pts</strong></div>
+                                                    <div><i class="fas fa-check-circle text-success"></i> Achievements Weight: <strong>+25 pts</strong></div>
+                                                    <div><i class="fas fa-check-circle text-success"></i> Attendance Present Days: <strong>+2 pts</strong></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-trophy text-warning"></i> Key Achievements & Participation</h3>
+                                                @if($achievements->count() > 0)
+                                                    <div class="table-wrap-dash">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Title</th>
+                                                                    <th>Type</th>
+                                                                    <th>Status</th>
+                                                                    <th>Date</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($achievements as $ach)
+                                                                    <tr>
+                                                                        <td>
+                                                                            <strong>{{ $ach->title }}</strong>
+                                                                            @if($ach->description)
+                                                                                <div style="font-size: 11px; color: var(--text-dash2)">{{ $ach->description }}</div>
+                                                                            @endif
+                                                                        </td>
+                                                                        <td><span class="badge-dash badge-{{ $ach->achievement_type }}">{{ ucfirst($ach->achievement_type) }}</span></td>
+                                                                        <td>
+                                                                            @php
+                                                                                $status_badge = $ach->participation_status == 'prize_winner' ? 'badge-prize' : ($ach->participation_status == 'participated' ? 'badge-participated' : 'badge-interested');
+                                                                            @endphp
+                                                                            <span class="badge-dash {{ $status_badge }}">{{ ucwords(str_replace('_', ' ', $ach->participation_status)) }}</span>
+                                                                        </td>
+                                                                        <td>{{ dateConvert($ach->achievement_date) }}</td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                @else
+                                                    <div class="text-center py-4">
+                                                        <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
+                                                        <p class="text-muted">No achievements logged yet.</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-5">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-plus-circle text-primary"></i> Add Achievement</h3>
+                                                <form id="achievementForm" class="form-glass" onsubmit="submitCustomForm(event, 'achievements', 'achievementForm')">
+                                                    <div class="form-group-dash">
+                                                        <label>Achievement Type</label>
+                                                        <select name="achievement_type" required>
+                                                            <option value="academic">Academic</option>
+                                                            <option value="sports">Sports</option>
+                                                            <option value="extracurricular">Extracurricular</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Achievement Title</label>
+                                                        <input type="text" name="title" placeholder="e.g. 1st Place Science Fair, Football MVP" required>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Description / Details</label>
+                                                        <textarea name="description" rows="3" placeholder="Enter specific details of the achievement..."></textarea>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Participation Status</label>
+                                                        <select name="participation_status" required>
+                                                            <option value="interested">Interested</option>
+                                                            <option value="participated">Participated</option>
+                                                            <option value="prize_winner">Prize Winner</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Achievement Date</label>
+                                                        <input type="date" name="achievement_date" value="{{ date('Y-m-d') }}" required>
+                                                    </div>
+                                                    <button type="submit" class="btn-dash btn-dash-primary">
+                                                        <i class="fas fa-award"></i> Log Student Achievement
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom Library Tab Pane -->
+                            <div role="tabpanel" class="tab-pane fade" id="customLibrary">
+                                <div class="custom-dashboard-wrapper">
+                                    <div class="glass-card">
+                                        <h3><i class="fas fa-book text-info"></i> Issued Books & Library Status</h3>
+                                        @if($library_issues->count() > 0)
+                                            <div class="table-wrap-dash">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Book Title</th>
+                                                            <th>Author</th>
+                                                            <th>ISBN Number</th>
+                                                            <th>Given Date</th>
+                                                            <th>Due Date</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($library_issues as $issue)
+                                                            <tr>
+                                                                <td><strong>{{ $issue->book_title }}</strong></td>
+                                                                <td>{{ $issue->author_name }}</td>
+                                                                <td>{{ $issue->isbn_no ?? 'N/A' }}</td>
+                                                                <td>{{ dateConvert($issue->given_date) }}</td>
+                                                                <td>{{ dateConvert($issue->due_date) }}</td>
+                                                                <td>
+                                                                    @if($issue->issue_status == 'R')
+                                                                        <span class="badge-dash badge-good"><i class="fas fa-check-circle"></i> Returned</span>
+                                                                    @else
+                                                                        @php
+                                                                            $overdue = strtotime($issue->due_date) < time();
+                                                                        @endphp
+                                                                        @if($overdue)
+                                                                            <span class="badge-dash badge-misbehavior"><i class="fas fa-exclamation-triangle"></i> Overdue (Pending)</span>
+                                                                        @else
+                                                                            <span class="badge-dash badge-average"><i class="fas fa-clock"></i> Issued / Pending</span>
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @else
+                                            <div class="text-center py-4">
+                                                <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
+                                                <p class="text-muted">No books currently checked out or tracked.</p>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom Spending Tab Pane -->
+                            <div role="tabpanel" class="tab-pane fade" id="customSpending">
+                                <div class="custom-dashboard-wrapper">
+                                    <div class="stats-grid-dash">
+                                        <div class="stat-card-dash">
+                                            <span class="stat-value">{{ $currency }}{{ number_format($total_spending, 2) }}</span>
+                                            <span class="stat-label">Canteen & Other Spendings</span>
+                                            <i class="fas fa-utensils stat-icon" style="color: var(--orange-dash)"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-receipt text-warning"></i> Canteen & Personal Transactions</h3>
+                                                @if($spending->count() > 0)
+                                                    <div class="table-wrap-dash">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Category</th>
+                                                                    <th>Amount</th>
+                                                                    <th>Description</th>
+                                                                    <th>Date</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($spending as $spend)
+                                                                    <tr>
+                                                                        <td><span class="badge-dash badge-sports">{{ ucfirst($spend->category) }}</span></td>
+                                                                        <td style="font-weight: 700; color: #ffffff;">{{ $currency }}{{ number_format($spend->amount, 2) }}</td>
+                                                                        <td>{{ $spend->description }}</td>
+                                                                        <td>{{ dateConvert($spend->spending_date) }}</td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                @else
+                                                    <div class="text-center py-4">
+                                                        <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
+                                                        <p class="text-muted">No personal spending transactions registered yet.</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-5">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-plus-circle text-primary"></i> Add Spending Transaction</h3>
+                                                <form id="spendingForm" class="form-glass" onsubmit="submitCustomForm(event, 'spending', 'spendingForm')">
+                                                    <div class="form-group-dash">
+                                                        <label>Category</label>
+                                                        <select name="category" required>
+                                                            <option value="canteen">Canteen Billing</option>
+                                                            <option value="bookstore">Bookstore</option>
+                                                            <option value="cocurricular">Co-curricular Expenses</option>
+                                                            <option value="misc">Miscellaneous</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Amount ({{ $currency }})</label>
+                                                        <input type="number" step="0.01" name="amount" placeholder="0.00" required>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Description</label>
+                                                        <textarea name="description" rows="3" placeholder="Enter transaction details (e.g. Purchased school blazer, Lunch buffet)..." required></textarea>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Spending Date</label>
+                                                        <input type="date" name="spending_date" value="{{ date('Y-m-d') }}" required>
+                                                    </div>
+                                                    <button type="submit" class="btn-dash btn-dash-primary">
+                                                        <i class="fas fa-wallet"></i> Save Billing Transaction
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom Communication Tab Pane -->
+                            <div role="tabpanel" class="tab-pane fade" id="customComms">
+                                <div class="custom-dashboard-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-envelope-open-text text-primary"></i> Dispatch Logs & Multi-Channel Alerts</h3>
+                                                @if($comms->count() > 0)
+                                                    <div class="timeline-dash">
+                                                        @foreach($comms as $cm)
+                                                            <div class="timeline-item-dash average">
+                                                                <div class="time-dash"><i class="far fa-clock"></i> {{ dateConvert($cm->sent_at ?? date('Y-m-d')) }}</div>
+                                                                <div class="title-dash">
+                                                                    <span class="badge-dash badge-academic">{{ strtoupper($cm->channel) }}</span>
+                                                                    - {{ $cm->subject }}
+                                                                </div>
+                                                                <div class="desc-dash">
+                                                                    <p style="margin-top: 4px; margin-bottom: 2px;">{{ $cm->message }}</p>
+                                                                    <small class="text-muted">Type: <strong>{{ ucfirst($cm->event_type) }}</strong> | Sent By: {{ $cm->sent_by }}</small>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <div class="text-center py-4">
+                                                        <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
+                                                        <p class="text-muted">No communication alerts sent yet.</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-5">
+                                            <div class="glass-card">
+                                                <h3><i class="fas fa-paper-plane text-primary"></i> Send Alert Notification</h3>
+                                                <form id="commForm" class="form-glass" onsubmit="submitCustomForm(event, 'communications', 'commForm')">
+                                                    <div class="form-group-dash">
+                                                        <label>Alert Channel</label>
+                                                        <select name="channel" required>
+                                                            <option value="email">Email Notification</option>
+                                                            <option value="sms">SMS Alert Message</option>
+                                                            <option value="group">Group Broadcast Alert</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Event / Notification Type</label>
+                                                        <select name="event_type" required>
+                                                            <option value="general">General Broadcast</option>
+                                                            <option value="sports">Sports Activities Alert</option>
+                                                            <option value="training">Training Sessions Alert</option>
+                                                            <option value="school_event">School Special Events</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Alert Subject</label>
+                                                        <input type="text" name="subject" placeholder="Enter alert subject..." required>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Alert Message Body</label>
+                                                        <textarea name="message" rows="4" placeholder="Type notification content..." required></textarea>
+                                                    </div>
+                                                    <div class="form-group-dash">
+                                                        <label>Authorized Sender</label>
+                                                        <input type="text" name="sent_by" value="{{ Auth::user()->full_name ?? 'School Admin' }}" required>
+                                                    </div>
+                                                    <button type="submit" class="btn-dash btn-dash-primary">
+                                                        <i class="fas fa-paper-plane"></i> Send Alert Notification
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Generic interactive forms script -->
+                            <script>
+                                async function submitCustomForm(event, endpoint, formId) {
+                                    event.preventDefault();
+                                    const form = document.getElementById(formId);
+                                    const submitBtn = form.querySelector('button[type="submit"]');
+                                    const origText = submitBtn.innerHTML;
+                                    submitBtn.disabled = true;
+                                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
+
+                                    const formData = new FormData(form);
+                                    const data = {};
+                                    formData.forEach((value, key) => data[key] = value);
+                                    
+                                    // Add student ID to payloads
+                                    data['student_id'] = "{{ $student_detail->id }}";
+
+                                    try {
+                                        const response = await fetch("{{ url('/') }}/api.php/" + endpoint, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify(data)
+                                        });
+                                        const result = await response.json();
+                                        if (result.success) {
+                                            alert('Record saved successfully!');
+                                            window.location.reload();
+                                        } else {
+                                            alert('Error saving record: ' + (result.error || 'Unknown error'));
+                                            submitBtn.disabled = false;
+                                            submitBtn.innerHTML = origText;
+                                        }
+                                    } catch (error) {
+                                        console.error('Submission failed:', error);
+                                        alert('Failed to submit form: ' + error.message);
+                                        submitBtn.disabled = false;
+                                        submitBtn.innerHTML = origText;
+                                    }
+                                }
+                            </script>
                         </div>
                     </div>
 

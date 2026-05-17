@@ -33,8 +33,8 @@
     @endforeach
 @endif
 @if(config('app.app_sync'))
-    <a target="_blank" href="https://aorasoft.com" class="float_button"> <i class="ti-shopping-cart-full"></i>
-        <h3>Purchase InfixEdu</h3>
+    <a target="_blank" href="#" class="float_button"> <i class="ti-home"></i>
+        <h3>SAC Portal</h3>
     </a>
 @endif
 <div class="has-modal modal fade" id="showDetaildModal">

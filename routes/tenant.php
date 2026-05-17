@@ -10,16 +10,13 @@ Route::get('school-secret-login', '\App\Http\Controllers\Auth\LoginController@se
 
 Route::group(['middleware' => []], function () {
 
-    if (config('app.app_sync') and ! session('domain')) {
-        Route::get('/', 'LandingController@index')->name('/');
-    } else {
-        if (moduleStatusCheck('Saas') === true) {
-            Route::get('login', 'Auth\LoginController@loginFormTwo')->name('login');
-        }
-
-        Route::get('/', 'SmFrontendController@index')->name('/');
-
+    if (moduleStatusCheck('Saas') === true) {
+        Route::get('login', 'Auth\LoginController@loginFormTwo')->name('login');
     }
+
+    Route::get('/', function () {
+        return redirect()->to('/login');
+    })->name('/');
 
     Route::get('login', 'Auth\LoginController@loginFormTwo')->name('login');
 

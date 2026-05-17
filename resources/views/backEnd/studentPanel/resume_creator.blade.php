@@ -608,17 +608,23 @@
        ========================================== */
     @media print {
         /* Reset and hide master admin layouts */
-        body {
-            background: #ffffff !important;
-            color: #000000 !important;
+        body * {
+            visibility: hidden;
         }
         
-        #main-content, .main-wrapper, .admin, .sidebar, #sidebar, .header_aria, .footer-area, .breadcrumb, .resume-control-panel, .card {
+        .resume-preview-container, .resume-preview-container * {
+            visibility: visible;
+        }
+        
+        .resume-control-panel {
             display: none !important;
-            visibility: hidden !important;
         }
         
         .resume-preview-container {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
             background: none !important;
             padding: 0 !important;
             margin: 0 !important;
@@ -627,14 +633,11 @@
         
         .resume-sheet {
             width: 100% !important;
-            height: 100% !important;
             min-height: auto !important;
             box-shadow: none !important;
             padding: 0 !important;
             margin: 0 !important;
-            position: absolute !important;
-            left: 0 !important;
-            top: 0 !important;
+            position: relative !important;
             overflow: visible !important;
         }
         
@@ -696,32 +699,46 @@
                     <span class="flaticon-calendar-1"></span>
                     Text Sizing
                 </div>
-                <select class="size-select" onchange="setSize(this.value)">
+                <select class="size-select" id="size-dropdown" onchange="setSize(this.value)" style="margin-bottom: 8px;">
+                    <option value="" style="display:none;">Custom...</option>
+                    <option value="12px">12px</option>
+                    <option value="14px">14px</option>
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
                     <option value="small">Compact / Small</option>
                     <option value="medium" selected>Standard / Medium</option>
                     <option value="large">Spacious / Large</option>
                 </select>
+                <div class="custom-color-input" style="align-items: center; justify-content: space-between;">
+                    <label style="font-size: 12px; color: #4a5568;">Custom Size:</label>
+                    <input type="text" id="custom-size-input" placeholder="e.g. 15, 1.2rem" onchange="setCustomSize(this.value)" class="font-select" style="font-size: 12px; height: 32px; width: 60%; padding: 4px 10px;">
+                </div>
             </div>
 
-            <!-- Accent Color Theme & 5,000+ Preset Rainbow Catalog -->
+            <!-- Accent Color Theme -->
             <div class="control-section">
-                <div class="control-title" style="margin-bottom: 6px;">
+                <div class="control-title">
                     <span class="flaticon-reading"></span>
                     Accent Color Theme
                 </div>
+                <div class="color-presets">
+                    <div class="color-swatch active" style="background: #3182ce;" onclick="setAccent('#3182ce', this)"></div>
+                    <div class="color-swatch" style="background: #e53e3e;" onclick="setAccent('#e53e3e', this)"></div>
+                    <div class="color-swatch" style="background: #38a169;" onclick="setAccent('#38a169', this)"></div>
+                    <div class="color-swatch" style="background: #dd6b20;" onclick="setAccent('#dd6b20', this)"></div>
+                    <div class="color-swatch" style="background: #805ad5;" onclick="setAccent('#805ad5', this)"></div>
+                    <div class="color-swatch" style="background: #319795;" onclick="setAccent('#319795', this)"></div>
+                    <div class="color-swatch" style="background: #2d3748;" onclick="setAccent('#2d3748', this)"></div>
+                </div>
                 
-                <div class="custom-color-input" style="flex-direction: column; align-items: flex-start; gap: 4px; width: 100%; margin-bottom: 12px;">
-                    <label style="font-size:12px; color:#718096; margin-bottom: 2px;">Enter ANY Format (HEX, RGB, HSL or CSS Name):</label>
-                    <div style="display: flex; align-items: center; gap: 8px; width: 100%;">
-                        <input type="text" id="custom-color-text" placeholder="e.g. #3182ce, rgb(49,130,206), blue" oninput="handleColorInput(this.value)" class="font-select" style="font-size: 12px; height: 36px; padding: 4px 10px;">
-                        <span id="color-valid-indicator" style="width: 28px; height: 28px; border-radius: 50%; background: #3182ce; border: 2px solid #ffffff; box-shadow: 0 0 0 1px #cbd5e0; display: inline-block; flex-shrink: 0; transition: background 0.15s ease;"></span>
-                    </div>
-                    <div id="color-error-msg" style="font-size:10px; color:#e53e3e; display:none; margin-top:2px;">⚠️ Invalid CSS color format</div>
+                <div class="custom-color-input" style="margin-bottom: 15px;">
+                    <label style="font-size: 13px; color: #4a5568;">Custom Color:</label>
+                    <input type="color" id="custom-color-picker" value="#3182ce" onchange="setAccent(this.value, null)">
                 </div>
 
                 <!-- 5,000+ Presets Color Spectrum Catalog -->
                 <div style="font-size: 12px; font-weight: 600; color: #2c3e50; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-                    🌈 5,000+ Default Color Library
+                    🌈 Preset Colour
                 </div>
                 
                 <!-- Filter Category Tabs -->
@@ -737,10 +754,6 @@
                 <!-- Large Dense Mosaic Grid -->
                 <div id="color-mosaic-container" style="height: 180px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px; background: #ffffff; display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; scrollbar-width: thin; box-sizing: border-box;">
                     <!-- JS will dynamically populate 5,000+ color cells! -->
-                </div>
-                
-                <div style="font-size: 10px; color:#a0aec0; margin-top:6px; text-align:center;">
-                    ✨ Click any swatch above to instantly apply.
                 </div>
             </div>
 
@@ -908,8 +921,9 @@
         filterColorCategory('all');
         
         // Populate custom color text box with initial value
-        document.getElementById('custom-color-text').value = currentAccent;
-        document.getElementById('color-valid-indicator').style.background = currentAccent;
+        if (document.getElementById('custom-color-picker')) {
+            document.getElementById('custom-color-picker').value = currentAccent;
+        }
 
         // Hide font dropdown on click outside
         document.addEventListener('click', (e) => {
@@ -1045,42 +1059,57 @@
     function setSize(sizeName) {
         const sheet = document.getElementById('resume-sheet');
         sheet.classList.remove('size-small', 'size-medium', 'size-large');
-        sheet.classList.add('size-' + sizeName);
+        
+        if (sizeName === 'small' || sizeName === 'medium' || sizeName === 'large') {
+            sheet.style.fontSize = ''; // clear any inline style
+            sheet.classList.add('size-' + sizeName);
+        } else if (sizeName !== '') {
+            // Numerical pixel value handling
+            sheet.style.fontSize = sizeName;
+        }
+        
+        // Clear custom input visually if standard option is selected
+        const customInput = document.getElementById('custom-size-input');
+        if (customInput && customInput.value !== sizeName && sizeName !== '') {
+            customInput.value = '';
+        }
+        
         currentSize = sizeName;
     }
 
-    // Accepting Custom Accent Colors in ANY Format Entry
-    function isValidColor(colorString) {
-        const s = new Option().style;
-        s.color = colorString;
-        return s.color !== '';
-    }
-
-    function handleColorInput(val) {
+    function setCustomSize(val) {
         val = val.trim();
-        const indicator = document.getElementById('color-valid-indicator');
-        const errorMsg = document.getElementById('color-error-msg');
+        if(!val) return;
         
-        if (!val) {
-            indicator.style.background = '#cbd5e0';
-            errorMsg.style.display = 'none';
-            return;
+        // Auto-append 'px' if user just typed a raw number
+        if(!isNaN(val)) {
+            val = val + 'px';
         }
-
-        if (isValidColor(val)) {
-            indicator.style.background = val;
-            errorMsg.style.display = 'none';
-            setAccent(val);
-        } else {
-            indicator.style.background = '#cbd5e0';
-            errorMsg.style.display = 'block';
-        }
+        
+        // Set the dropdown to the hidden "Custom" option to visually detach it
+        document.getElementById('size-dropdown').value = '';
+        
+        // Apply the size
+        setSize(val);
+        
+        // Persist the correctly formatted value back into the input box
+        document.getElementById('custom-size-input').value = val;
     }
 
-    function setAccent(colorHex) {
+    function setAccent(colorHex, swatchEl = null) {
         // Set CSS Accent Variables dynamically
         document.documentElement.style.setProperty('--resume-accent', colorHex);
         currentAccent = colorHex;
+        
+        if (swatchEl) {
+            document.querySelectorAll('.color-swatch').forEach(el => el.classList.remove('active'));
+            swatchEl.classList.add('active');
+            if (document.getElementById('custom-color-picker')) {
+                document.getElementById('custom-color-picker').value = colorHex;
+            }
+        } else {
+            document.querySelectorAll('.color-swatch').forEach(el => el.classList.remove('active'));
+        }
         
         // Also update any inline styling accents if necessary
         const sectionTitles = document.querySelectorAll('.r-section-title');
@@ -1131,6 +1160,7 @@
 
     function renderColorMosaic(colorsArray) {
         const container = document.getElementById('color-mosaic-container');
+        if(!container) return;
         container.innerHTML = '';
         
         const fragment = document.createDocumentFragment();
@@ -1141,9 +1171,9 @@
             div.title = c.hsl;
             div.onclick = () => {
                 setAccent(c.hsl);
-                document.getElementById('custom-color-text').value = c.hsl;
-                document.getElementById('color-valid-indicator').style.background = c.hsl;
-                document.getElementById('color-error-msg').style.display = 'none';
+                if (document.getElementById('custom-color-picker')) {
+                    document.getElementById('custom-color-picker').value = c.hsl;
+                }
             };
             fragment.appendChild(div);
         });

@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
-if (config('app.app_sync')) {
-    Route::get('/', 'LandingController@index')->name('/');
-}
+Route::get('/', function () {
+    return redirect()->to('/login');
+})->name('/');
 
 
 if (moduleStatusCheck('Saas')) {
