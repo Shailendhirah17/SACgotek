@@ -378,6 +378,31 @@ class SmStudentPanelController extends Controller
         }
     }
 
+    public function studentResumeCreator(Request $request)
+    {
+        try {
+            $student_detail = auth()->user()->student->load('gender', 'defaultClass.class', 'defaultClass.section', 'studentTimeline');
+            
+            $siblings = SmStudent::where('parent_id', $student_detail->parent_id)
+                ->where('school_id', Auth::user()->school_id)
+                ->where('id', '!=', $student_detail->id)
+                ->whereNotNull('parent_id')
+                ->get();
+                
+            $timelines = SmStudentTimeline::where('staff_student_id', $student_detail->id)
+                ->where('type', 'stu')
+                ->where('visible_to_student', 1)
+                ->where('academic_id', getAcademicId())
+                ->where('school_id', Auth::user()->school_id)
+                ->get();
+
+            return view('backEnd.studentPanel.resume_creator', compact('student_detail', 'siblings', 'timelines'));
+        } catch (\Exception $e) {
+            Toastr::error('Operation Failed', 'Failed');
+            return redirect()->back();
+        }
+    }
+
     public function studentUpdate(SmStudentAdmissionRequest $request)
     {
         try {

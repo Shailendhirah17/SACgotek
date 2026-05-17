@@ -34,6 +34,17 @@
     @endif
 @endforeach
 
+<li class="{{ spn_active_link(['student-resume-creator'], 'mm-active') }} student-resume-creator main">
+    <a href="{{ route('student-resume-creator') }}">
+        <div class="nav_icon_small">
+            <span class="flaticon-resume"></span>
+        </div>
+        <div class="nav_title">
+            <span>Resume Creator</span>
+        </div>
+    </a>
+</li>
+
 {{-- @if( userPermission("student-dashboard"))
     <li class="{{ spn_active_link(['student-dashboard',], "mm-active") }} student-dashboard main">
         <a href="{{ validRouteUrl('student-dashboard') }}">

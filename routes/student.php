@@ -11,6 +11,7 @@ Route::group(['middleware' => ['XSS', 'subdomain']], function () {
         Route::get('student-download-document/{file_name}', 'Student\SmStudentPanelController@DownlodStudentDocument')->name('student-download-document')->middleware('userRolePermission:student-download-document');
         Route::post('student-logout', 'Auth\LoginController@logout')->name('student-logout');
         Route::get('student-profile', 'Student\SmStudentPanelController@studentProfile')->name('student-profile')->middleware('userRolePermission:student-profile');
+        Route::get('student-resume-creator', 'Student\SmStudentPanelController@studentResumeCreator')->name('student-resume-creator');
         Route::get('update-my-profile/{id}', 'Student\SmStudentPanelController@studentProfileUpdate')->name('update-my-profile')->middleware('userRolePermission:update-my-profile');
         Route::post('update-my-profile', 'Student\SmStudentPanelController@studentUpdate')->name('my-profile-update');
         Route::get('student-dashboard', 'Student\SmStudentPanelController@studentDashboard')->name('student-dashboard')->middleware('userRolePermission:student-dashboard');

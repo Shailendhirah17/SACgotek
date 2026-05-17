@@ -25,6 +25,16 @@
         </a>
     </li>
 @endif
+    <li class="sortable_li">
+        <a href="{{route('student-resume-creator')}}">
+            <div class="nav_icon_small">
+                <span class="flaticon-resume"></span>
+            </div>
+            <div class="nav_title">
+                <span>Resume Creator</span>
+            </div>
+        </a>
+    </li>
 @if(generalSetting()->fees_status == 0)
     @if(userPermission('fees') && menuStatus(20))
         <li data-position="{{menuPosition(20)}}" class="sortable_li">
