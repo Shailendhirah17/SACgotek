@@ -124,27 +124,17 @@ $ttl_rtl = userRtlLtl();
             gap: 12px;
         }
 
-        .sac-logo-svg {
-            width: 85px;
-            height: 85px;
-            filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.4));
+        .sac-logo-img {
+            max-width: 220px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.45)) drop-shadow(0 0 40px rgba(168, 85, 247, 0.25));
             animation: float-logo 4s ease-in-out infinite;
+            margin-bottom: 5px;
         }
 
         @keyframes float-logo {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-6px) rotate(3deg); }
-        }
-
-        .brand-title {
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-glow) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
 
         .brand-subtitle {
@@ -357,32 +347,7 @@ $ttl_rtl = userRtlLtl();
                 
                 <!-- Logo & Brand Header -->
                 <div class="logo-wrapper">
-                    <svg class="sac-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="sacGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#4facfe" />
-                                <stop offset="100%" stop-color="#00f2fe" />
-                            </linearGradient>
-                            <filter id="sacGlow" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="4" result="blur" />
-                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                            </filter>
-                        </defs>
-                        <!-- Outer Academic Circular Crest -->
-                        <circle cx="50" cy="50" r="44" fill="none" stroke="url(#sacGrad)" stroke-width="2" stroke-dasharray="6 3" stroke-opacity="0.6" filter="url(#sacGlow)" />
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="url(#sacGrad)" stroke-width="1" stroke-opacity="0.3" />
-                        
-                        <!-- Graduation Cap (Mortarboard) -->
-                        <polygon points="50,16 84,26 50,36 16,26" fill="url(#sacGrad)" fill-opacity="0.15" stroke="url(#sacGrad)" stroke-width="3" stroke-linejoin="round" filter="url(#sacGlow)" />
-                        <path d="M30,30 L30,44 C30,50 70,50 70,44 L70,30" fill="none" stroke="url(#sacGrad)" stroke-width="3" stroke-linecap="round" />
-                        <path d="M50,26 L22,32 L20,46 C20,49 18,49 18,46 L18,34" fill="none" stroke="url(#sacGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-
-                        <!-- Open Book Motif representing Study & Wisdom -->
-                        <path d="M50,76 C35,72 20,76 20,76 L20,54 C20,54 35,50 50,54 Z" fill="url(#sacGrad)" fill-opacity="0.1" stroke="url(#sacGrad)" stroke-width="3" stroke-linejoin="round" />
-                        <path d="M50,76 C65,72 80,76 80,76 L80,54 C80,54 65,50 50,54 Z" fill="url(#sacGrad)" fill-opacity="0.1" stroke="url(#sacGrad)" stroke-width="3" stroke-linejoin="round" filter="url(#sacGlow)" />
-                        <line x1="50" y1="54" x2="50" y2="76" stroke="url(#sacGrad)" stroke-width="2.5" stroke-linecap="round" />
-                    </svg>
-                    <h1 class="brand-title">SAC</h1>
+                    <img class="sac-logo-img" src="{{ asset('public/uploads/settings/logo.png') }}?v={{ time() }}" alt="SAC Logo">
                     <h2 class="brand-subtitle">Smart ERP Portal</h2>
                 </div>
 
