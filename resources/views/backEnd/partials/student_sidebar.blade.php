@@ -35,6 +35,16 @@
             </div>
         </a>
     </li>
+    <li class="sortable_li">
+        <a href="{{route('student-sports')}}">
+            <div class="nav_icon_small">
+                <span class="fas fa-running"></span>
+            </div>
+            <div class="nav_title">
+                <span>Sports</span>
+            </div>
+        </a>
+    </li>
 @if(generalSetting()->fees_status == 0)
     @if(userPermission('fees') && menuStatus(20))
         <li data-position="{{menuPosition(20)}}" class="sortable_li">
