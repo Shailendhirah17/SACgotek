@@ -125,8 +125,11 @@ $ttl_rtl = userRtlLtl();
         }
 
         .sac-logo-img {
-            max-width: 220px;
-            height: auto;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(0, 242, 254, 0.4);
             filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.45)) drop-shadow(0 0 40px rgba(168, 85, 247, 0.25));
             animation: float-logo 4s ease-in-out infinite;
             margin-bottom: 5px;
