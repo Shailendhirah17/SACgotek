@@ -45,6 +45,17 @@
     </a>
 </li>
 
+<li class="{{ spn_active_link(['student-sports'], 'mm-active') }} student-sports main">
+    <a href="{{ route('student-sports') }}">
+        <div class="nav_icon_small">
+            <span class="fas fa-running"></span>
+        </div>
+        <div class="nav_title">
+            <span>Sports</span>
+        </div>
+    </a>
+</li>
+
 {{-- @if( userPermission("student-dashboard"))
     <li class="{{ spn_active_link(['student-dashboard',], "mm-active") }} student-dashboard main">
         <a href="{{ validRouteUrl('student-dashboard') }}">

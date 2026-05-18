@@ -71,6 +71,9 @@ class Kernel extends ConsoleKernel
 
             // Run SaaS subscription expiration check daily
             $schedule->command('saas:check-subscriptions')->daily();
+
+            // Run Sports Practice Reminders every ten minutes
+            $schedule->command('sports:send-reminders')->everyTenMinutes();
         }
     }
 

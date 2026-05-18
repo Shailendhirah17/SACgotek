@@ -99,6 +99,10 @@ Route::group(['middleware' => ['XSS', 'subdomain']], function () {
 
         // Student Teacher
         Route::get('student-teacher', ['as' => 'student_teacher', 'uses' => 'Student\SmStudentPanelController@studentTeacher'])->middleware('userRolePermission:student_teacher');
+
+        // Student Sports
+        Route::get('student-sports', 'Student\SmStudentSportsController@index')->name('student-sports');
+        Route::post('student-sports-store', 'Student\SmStudentSportsController@store')->name('student-sports-store');
     });
 
     // Student leave
