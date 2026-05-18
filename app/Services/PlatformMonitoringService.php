@@ -28,7 +28,7 @@ class PlatformMonitoringService
         // In a real system, you'd calculate this from active sessions or access logs.
         $heartbeat->daily_active_users = DB::table('users')
             ->where('school_id', $schoolId)
-            ->where('last_login_at', '>=', now()->subDay())
+            ->where('updated_at', '>=', now()->subDay())
             ->count();
             
         // Calculate health status based on activity
