@@ -648,7 +648,8 @@
                                 <a class="nav-link" href="#customComms" role="tab" data-toggle="tab"><i class="fas fa-envelope mr-2"></i>Communication Log</a>
                             </li>
                             
-                            <li class="nav-item edit-button">
+                            @if (userPermission('update-my-profile'))
+                                <li class="nav-item edit-button">
                                     <a href="{{ route('update-my-profile', $student_detail->id) }}"
                                         class="primary-btn small fix-gr-bg pull-right">@lang('common.edit')</a>
                                 </li>
