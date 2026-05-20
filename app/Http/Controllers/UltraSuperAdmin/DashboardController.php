@@ -59,8 +59,10 @@ class DashboardController extends Controller
             }
 
             // Super Admin Statistics
+            $superAdminsList = collect();
             if (DB::getSchemaBuilder()->hasTable('super_admins')) {
                 $totalSuperAdmins = SuperAdmin::count();
+                $superAdminsList = SuperAdmin::with('schoolGroup')->get();
             }
 
             // User Statistics
@@ -131,6 +133,7 @@ class DashboardController extends Controller
                 'totalParents',
                 'totalUsers',
                 'totalSuperAdmins',
+                'superAdminsList',
                 'activeSubscriptions',
                 'expiringSubscriptions',
                 'totalRevenue',
@@ -159,6 +162,7 @@ class DashboardController extends Controller
                 'totalParents' => $totalParents,
                 'totalUsers' => $totalUsers,
                 'totalSuperAdmins' => $totalSuperAdmins,
+                'superAdminsList' => collect(),
                 'activeSubscriptions' => $activeSubscriptions,
                 'expiringSubscriptions' => $expiringSubscriptions,
                 'totalRevenue' => $totalRevenue,

@@ -90,6 +90,83 @@
 
 <!-- Main content area -->
 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <!-- Super Admin Accounts -->
+    <div style="flex: 100%; min-width: 100%;">
+        <div class="usa-card">
+            <div class="usa-card-header">
+                <div class="usa-card-title">
+                    <i class="fas fa-user-shield" style="color: var(--usa-info); margin-right: 8px;"></i>
+                    Super Admin Accounts
+                </div>
+            </div>
+            
+            @if(isset($superAdminsList) && $superAdminsList->count() > 0)
+            <table class="usa-table">
+                <thead>
+                    <tr>
+                        <th>Super Admin Details</th>
+                        <th>Organization (School Group)</th>
+                        <th>Subscription Model</th>
+                        <th>Subscription Period</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($superAdminsList as $account)
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--usa-text-primary);">{{ $account->full_name }}</div>
+                            <div style="font-size: 11px; color: var(--usa-text-muted);">{{ $account->email }} ({{ $account->username }})</div>
+                        </td>
+                        <td>
+                            @if($account->schoolGroup)
+                                <div style="font-weight: 600; color: var(--usa-text-primary);">{{ $account->schoolGroup->name }}</div>
+                                <div style="font-size: 11px; color: var(--usa-text-muted);">Code: {{ $account->schoolGroup->code }}</div>
+                            @else
+                                <span style="color: var(--usa-text-muted);">No School Group Assigned</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($account->schoolGroup)
+                                <span class="usa-badge usa-badge-info" style="text-transform: uppercase;">
+                                    {{ $account->schoolGroup->subscription_plan ?? 'N/A' }}
+                                </span>
+                            @else
+                                <span style="color: var(--usa-text-muted);">N/A</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($account->schoolGroup)
+                                <div>
+                                    <span style="font-size: 12px; color: var(--usa-text-muted);">Start:</span> 
+                                    {{ $account->schoolGroup->subscription_start ? $account->schoolGroup->subscription_start->format('d M, Y') : 'N/A' }}
+                                </div>
+                                <div style="margin-top: 2px;">
+                                    <span style="font-size: 12px; color: var(--usa-text-muted);">End:</span> 
+                                    {{ $account->schoolGroup->subscription_end ? $account->schoolGroup->subscription_end->format('d M, Y') : 'N/A' }}
+                                </div>
+                            @else
+                                <span style="color: var(--usa-text-muted);">N/A</span>
+                            @endif
+                        </td>
+                        <td>
+                            <span class="usa-badge {{ $account->active_status ? 'usa-badge-success' : 'usa-badge-danger' }}">
+                                {{ $account->active_status ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            @else
+            <div style="text-align: center; padding: 40px; color: var(--usa-text-muted);">
+                <i class="fas fa-user-shield" style="font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                <p>No Super Admin accounts registered</p>
+            </div>
+            @endif
+        </div>
+    </div>
+
     <!-- Recent School Groups -->
     <div style="flex: 1.5; min-width: 400px;">
         <div class="usa-card">

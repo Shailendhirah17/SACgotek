@@ -14,7 +14,7 @@ class SuperAdminSeeder extends Seeder
      *
      * Creates a default platform administrator with the following credentials:
      * - Username: superadmin
-     * - Email: superadmin@infixedu.com
+     * - Email: superadmin@sac.com
      * - Password: superadmin123
      *
      * IMPORTANT: Change the default password immediately after first login.
@@ -24,7 +24,7 @@ class SuperAdminSeeder extends Seeder
     public function run()
     {
         $existing = SuperAdmin::where('username', 'superadmin')
-            ->orWhere('email', 'superadmin@infixedu.com')
+            ->orWhere('email', 'superadmin@sac.com')
             ->first();
 
         if ($existing) {
@@ -34,7 +34,7 @@ class SuperAdminSeeder extends Seeder
 
         $superAdmin = SuperAdmin::create([
             'username' => 'superadmin',
-            'email' => 'superadmin@infixedu.com',
+            'email' => 'superadmin@sac.com',
             'password' => Hash::make('superadmin123'),
             'full_name' => 'System Super Admin',
             'phone_number' => null,
@@ -44,7 +44,7 @@ class SuperAdminSeeder extends Seeder
 
         $this->command->info('Default SuperAdmin created successfully:');
         $this->command->info('  Username: superadmin');
-        $this->command->info('  Email: superadmin@infixedu.com');
+        $this->command->info('  Email: superadmin@sac.com');
         $this->command->info('  Password: superadmin123');
         $this->command->warn('  ⚠ Change this password immediately in production!');
 

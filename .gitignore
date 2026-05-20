@@ -24,3 +24,7 @@ dashboard_only.zip
 hostinger_deploy.zip
 database_export.sql
 PYEOF
+deploy.zip
+bugfix.zip
+vendor_temp.tar.gz
+*.zip

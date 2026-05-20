@@ -52,7 +52,7 @@ class UltraSuperAdminMiddleware
             $request->session()->regenerateToken();
 
             return redirect()->route('ultrasuperadmin.login')
-                ->with('message-danger', 'Your account has been deactivated. Contact Technosprint Info Solutions.');
+                ->with('message-danger', 'Your account has been deactivated. Contact GOTEK Company.');
         }
 
         Log::channel('daily')->info('UltraSuperAdmin authenticated', [

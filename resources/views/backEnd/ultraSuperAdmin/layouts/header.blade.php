@@ -9,7 +9,7 @@
     <div class="usa-header-right">
         <div style="font-size: 12px; color: var(--usa-text-muted); display: flex; align-items: center; gap: 6px;">
             <i class="fas fa-crown" style="color: var(--usa-secondary); font-size: 10px;"></i>
-            Technosprint Master Control
+            GOTEK Master Control
         </div>
 
         <button class="usa-header-btn usa-btn-outline" id="theme-toggle" type="button" title="Toggle Light/Dark Mode" style="border: none; font-size: 16px;">

@@ -4,7 +4,7 @@
 @section('content')
 <div style="margin-bottom: 24px;">
     <h4 style="font-size: 20px; font-weight: 700;">Platform Settings</h4>
-    <p style="font-size: 13px; color: var(--usa-text-muted); margin-top: 4px;">Global platform configuration managed by Technosprint</p>
+    <p style="font-size: 13px; color: var(--usa-text-muted); margin-top: 4px;">Global platform configuration managed by GOTEK</p>
 </div>
 
 <!-- System Configuration -->

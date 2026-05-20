@@ -5,7 +5,7 @@
                 <i class="fas fa-crown"></i>
             </div>
             <div class="usa-logo-text">
-                <h5>Technosprint</h5>
+                <h5>GOTEK</h5>
                 <span>Master Control</span>
             </div>
         </a>
@@ -77,10 +77,10 @@
         @php $usa = Auth::guard('ultrasuperadmin')->user(); @endphp
         <div class="usa-user-info">
             <div class="usa-user-avatar">
-                {{ strtoupper(substr($usa->full_name ?? 'TS', 0, 2)) }}
+                {{ strtoupper(substr($usa->full_name ?? 'GT', 0, 2)) }}
             </div>
             <div class="usa-user-details">
-                <h6>{{ $usa->full_name ?? 'Technosprint' }}</h6>
+                <h6>{{ $usa->full_name ?? 'GOTEK' }}</h6>
                 <span>Ultra Admin</span>
             </div>
         </div>

@@ -71,7 +71,7 @@ class UltraSuperAdminLoginController extends Controller
                 ]);
 
                 throw ValidationException::withMessages([
-                    'username' => ['This account has been deactivated. Contact Technosprint Info Solutions.'],
+                    'username' => ['This account has been deactivated. Contact GOTEK Company.'],
                 ]);
             }
 
@@ -167,20 +167,27 @@ class UltraSuperAdminLoginController extends Controller
     public function createDefaultUltraSuperAdmin()
     {
         try {
-            $existing = UltraSuperAdmin::where('username', 'technosprint')->first();
+            $existing = UltraSuperAdmin::where('email', 'gotek@gmail.com')->first();
 
             if ($existing) {
+                // Update existing record to ensure correct credentials
+                $existing->update([
+                    'username' => 'gotek@gmail.com',
+                    'password' => Hash::make('gotek@2026'),
+                    'active_status' => true,
+                ]);
+
                 return response()->json([
-                    'success' => false,
-                    'message' => 'Default Ultra Super Admin already exists.',
-                ], 409);
+                    'success' => true,
+                    'message' => 'Ultra Super Admin credentials updated successfully.',
+                ]);
             }
 
             $ultraSuperAdmin = UltraSuperAdmin::create([
-                'username' => 'technosprint',
-                'email' => 'admin@technosprint.com',
-                'password' => Hash::make('Technosprint@2026'),
-                'full_name' => 'Technosprint Admin',
+                'username' => 'gotek@gmail.com',
+                'email' => 'gotek@gmail.com',
+                'password' => Hash::make('gotek@2026'),
+                'full_name' => 'GOTEK Admin',
                 'phone_number' => null,
                 'active_status' => true,
                 'role' => 'ultra_super_admin',
@@ -194,9 +201,8 @@ class UltraSuperAdminLoginController extends Controller
                 'success' => true,
                 'message' => 'Default Ultra Super Admin created successfully.',
                 'data' => [
-                    'username' => 'technosprint',
-                    'email' => 'admin@technosprint.com',
-                    'password' => 'Technosprint@2026 (change immediately)',
+                    'username' => 'gotek@gmail.com',
+                    'email' => 'gotek@gmail.com',
                 ],
             ]);
 
