@@ -4527,13 +4527,18 @@ if (! function_exists('generateQRCode')) {
     {
 
         try {
-            if (! file_exists(public_path('qr_codes/'.$text.'-qrcode.png'))) {
+            $qr_code_dir = public_path('qr_codes');
+            if (!file_exists($qr_code_dir)) {
+                mkdir($qr_code_dir, 0755, true);
+            }
+            $qr_code_path = $qr_code_dir . '/'.$text.'-qrcode.png';
+            if (! file_exists($qr_code_path)) {
                 $qr_renderer = new ImageRenderer(
                     new RendererStyle(400, 1),
                     new ImagickImageBackEnd()
                 );
                 $writer = new Writer($qr_renderer);
-                $writer->writeFile($text, public_path('qr_codes/'.$text.'-qrcode.png'));
+                $writer->writeFile($text, $qr_code_path);
 
                 return asset('public/qr_codes/'.$text.'-qrcode.png');
             }

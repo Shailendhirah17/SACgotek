@@ -367,6 +367,13 @@ $ttl_rtl = userRtlLtl();
                         {{ session()->get('message-danger') }}
                     </div>
                 @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger py-2 text-center" style="background: rgba(220, 53, 69, 0.15); border: 1px solid #dc3545; color: #ff6b6b; border-radius: 10px; font-size: 13px; margin-bottom: 20px; font-weight: 500; filter: drop-shadow(0 0 10px rgba(220, 53, 69, 0.2));">
+                        @foreach ($errors->all() as $error)
+                            <div><i class="fa-solid fa-triangle-exclamation mr-1"></i> {{ $error }}</div>
+                        @endforeach
+                    </div>
+                @endif
 
                 <!-- Login Form -->
                 <form method="POST" action="{{ route('login') }}">
@@ -381,24 +388,17 @@ $ttl_rtl = userRtlLtl();
                             placeholder="@lang('auth.enter_email_address')" value="{{ old('email') }}" required />
                         <i class="fa-regular fa-envelope input-icon"></i>
                     </div>
-                    @if ($errors->has('email'))
-                        <span class="text-danger d-block mb-3" style="font-size: 12px; margin-top: -15px; font-weight: 500;">
-                            {{ $errors->first('email') }}
-                        </span>
-                    @endif
 
                     <!-- Password Field -->
                     <div class="input-group-custom">
                         <input class="form-control-custom{{ $errors->has('password') ? ' is-invalid' : '' }}"
                             type="password" name="password" id="password"
-                            placeholder="@lang('auth.enter_password')" required />
+                            placeholder="@lang('auth.enter_password')" required style="padding-right: 48px;" />
                         <i class="fa-solid fa-lock input-icon"></i>
-                    </div>
-                    @if ($errors->has('password'))
-                        <span class="text-danger d-block mb-3" style="font-size: 12px; margin-top: -15px; font-weight: 500;">
-                            {{ $errors->first('password') }}
+                        <span id="toggle-password" style="position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); cursor: pointer; transition: all 0.3s ease; z-index: 10;">
+                            <i class="fa-regular fa-eye" id="eye-icon"></i>
                         </span>
-                    @endif
+                    </div>
 
                     <!-- Options Bar -->
                     <div class="options-bar">
@@ -460,6 +460,21 @@ $ttl_rtl = userRtlLtl();
             // Listen to keypress
             $("#email-address").keyup(function () {
                 $("#username-hidden").val($(this).val());
+            });
+
+            // Toggle password visibility
+            $("#toggle-password").click(function () {
+                var passwordField = $("#password");
+                var passwordType = passwordField.attr("type");
+                var eyeIcon = $("#eye-icon");
+                
+                if (passwordType === "password") {
+                    passwordField.attr("type", "text");
+                    eyeIcon.removeClass("fa-regular fa-eye").addClass("fa-regular fa-eye-slash");
+                } else {
+                    passwordField.attr("type", "password");
+                    eyeIcon.removeClass("fa-regular fa-eye-slash").addClass("fa-regular fa-eye");
+                }
             });
         });
     </script>

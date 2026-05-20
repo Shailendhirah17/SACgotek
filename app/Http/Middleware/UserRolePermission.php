@@ -22,9 +22,33 @@ class UserRolePermission
             return redirect()->route('login');
         }
 
-        $permissions = app('permission');
-
         $user = auth()->user();
+
+        // 1. Whitelist View Profile for all roles accessing their own profile
+        $currentRoute = Route::current();
+        if ($currentRoute) {
+            $routeName = $currentRoute->getName();
+            
+            // Staff viewing their own profile
+            if ($routeName == 'viewStaff' || $route == 'view-staff' || $route == 'viewStaff') {
+                $routeId = $currentRoute->parameter('id');
+                if ($user->staff && $user->staff->id == $routeId) {
+                    return $next($request);
+                }
+            }
+            
+            // Student viewing their own profile
+            if ($user->role_id == 2 && ($routeName == 'student-profile' || $route == 'student-profile')) {
+                return $next($request);
+            }
+            
+            // Parent viewing their own dashboard/profile
+            if ($user->role_id == 3 && ($routeName == 'parent-profile' || $route == 'parent-profile')) {
+                return $next($request);
+            }
+        }
+
+        $permissions = app('permission');
         if ($user->role_id == 3 && Cache::get('have_due_fees_'.$user->id)) {
             $url = explode('/', $request->getRequestUri());
             $param = end($url);

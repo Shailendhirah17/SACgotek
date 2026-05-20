@@ -950,15 +950,23 @@ class SmStaffController extends Controller
 
             $custom_field_values = is_null($custom_field_data) ? null : json_decode($custom_field_data);
 
-            $qr_code_path = public_path('qr_codes/staff-'.$staffDetails->id.'-qrcode.png');
+            try {
+                $qr_code_dir = public_path('qr_codes');
+                if (!file_exists($qr_code_dir)) {
+                    mkdir($qr_code_dir, 0755, true);
+                }
+                $qr_code_path = $qr_code_dir . '/staff-'.$staffDetails->id.'-qrcode.png';
 
-            if (! file_exists($qr_code_path)) {
-                $imageRenderer = new ImageRenderer(
-                    new RendererStyle(400),
-                    new ImagickImageBackEnd()
-                );
-                $writer = new Writer($imageRenderer);
-                $qrcode = $writer->writeFile('staff-'.$staffDetails->id, $qr_code_path);
+                if (! file_exists($qr_code_path)) {
+                    $imageRenderer = new ImageRenderer(
+                        new RendererStyle(400),
+                        new ImagickImageBackEnd()
+                    );
+                    $writer = new Writer($imageRenderer);
+                    $qrcode = $writer->writeFile('staff-'.$staffDetails->id, $qr_code_path);
+                }
+            } catch (\Throwable $exception) {
+                logger()->error('Error on QR code Generate: ' . $exception->getMessage());
             }
 
             return view('backEnd.humanResource.viewStaff', ['staffDetails' => $staffDetails, 'staffPayrollDetails' => $staffPayrollDetails, 'staffLeaveDetails' => $staffLeaveDetails, 'staffDocumentsDetails' => $staffDocumentsDetails, 'timelines' => $timelines, 'custom_field_values' => $custom_field_values]);
