@@ -153,8 +153,7 @@ class UltraSuperAdminLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('ultrasuperadmin.login')
-            ->with('message-success', 'You have been logged out successfully.');
+        return redirect('/login')->with('message-success', 'You have been logged out successfully.');
     }
 
     /**
