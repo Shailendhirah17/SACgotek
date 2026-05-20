@@ -16,12 +16,9 @@
             <i class="fas fa-sun" id="theme-icon"></i>
         </button>
 
-        <form method="POST" action="{{ route('ultrasuperadmin.logout') }}" style="display: inline;">
-            @csrf
-            <button type="submit" class="usa-header-btn usa-btn-logout">
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
-            </button>
-        </form>
+        <!-- If they came from the web guard, we can show a Back to Home button -->
+        <a href="{{ route('admin-dashboard') }}" class="usa-header-btn usa-btn-logout" style="text-decoration: none; padding: 6px 12px; display: inline-block;">
+            <i class="fas fa-home" style="margin-right: 6px;"></i> Back to Home
+        </a>
     </div>
 </header>
