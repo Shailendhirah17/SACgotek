@@ -502,4 +502,117 @@ class HomeController extends Controller
 
         return ($totalWalletBalance - $totalWalletExpenseBalance) - $totalWalletRefundBalance + $totalFeesRefund;
     }
+
+    public function masterControl()
+    {
+        $ultraSuperAdmin = \Illuminate\Support\Facades\Auth::user();
+
+        $totalSchoolGroups = 0;
+        $activeSchoolGroups = 0;
+        $totalSchools = 0;
+        $activeSchools = 0;
+        $totalStudents = 0;
+        $totalStaff = 0;
+        $totalParents = 0;
+        $totalUsers = 0;
+        $totalSuperAdmins = 0;
+        $activeSubscriptions = 0;
+        $expiringSubscriptions = 0;
+        $totalRevenue = 0;
+
+        try {
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('school_groups')) {
+                $totalSchoolGroups = \App\Models\SchoolGroup::count();
+                $activeSchoolGroups = \App\Models\SchoolGroup::where('active_status', true)->count();
+                $activeSubscriptions = \App\Models\SchoolGroup::withActiveSubscription()->count();
+                $expiringSubscriptions = \App\Models\SchoolGroup::where('subscription_end', '>=', now())
+                    ->where('subscription_end', '<=', now()->addDays(30))
+                    ->count();
+            }
+
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('sm_schools')) {
+                $totalSchools = \App\SmSchool::count();
+                $activeSchools = \App\SmSchool::where('active_status', 1)->count();
+            }
+
+            $superAdminsList = collect();
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('users')) {
+                $superAdminsList = \App\User::where('role_id', 1)->with(['school.schoolGroup'])->get();
+                $totalSuperAdmins = $superAdminsList->count();
+            }
+
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('sm_students')) {
+                $totalStudents = \Illuminate\Support\Facades\DB::table('sm_students')->count();
+            }
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('sm_staffs')) {
+                $totalStaff = \Illuminate\Support\Facades\DB::table('sm_staffs')->count();
+            }
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('sm_parents')) {
+                $totalParents = \Illuminate\Support\Facades\DB::table('sm_parents')->count();
+            }
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('users')) {
+                $totalUsers = \Illuminate\Support\Facades\DB::table('users')->count();
+            }
+
+            if (\Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('sm_subscription_payments')) {
+                $totalRevenue = \Illuminate\Support\Facades\DB::table('sm_subscription_payments')
+                    ->where('approve_status', 'approved')
+                    ->sum('amount');
+            }
+
+            $recentGroups = \Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('school_groups')
+                ? \App\Models\SchoolGroup::withCount('schools')->orderBy('created_at', 'desc')->limit(5)->get()
+                : collect();
+
+            $recentSchools = \Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('sm_schools')
+                ? \App\SmSchool::orderBy('created_at', 'desc')->limit(5)->get()
+                : collect();
+
+            $planDistribution = \Illuminate\Support\Facades\DB::getSchemaBuilder()->hasTable('school_groups')
+                ? \App\Models\SchoolGroup::select('subscription_plan', \Illuminate\Support\Facades\DB::raw('count(*) as total'))
+                    ->groupBy('subscription_plan')
+                    ->get()
+                : collect();
+
+            $systemHealth = [
+                'php_version' => PHP_VERSION,
+                'laravel_version' => app()->version(),
+                'server_time' => now()->format('Y-m-d H:i:s'),
+                'cache_driver' => config('cache.default'),
+                'session_driver' => config('session.driver'),
+                'queue_driver' => config('queue.default'),
+                'disk_free' => @disk_free_space('/') ? round(disk_free_space('/') / (1024 * 1024 * 1024), 2) . ' GB' : 'N/A',
+            ];
+
+            return view('backEnd.masterControl', compact(
+                'ultraSuperAdmin', 'totalSchoolGroups', 'activeSchoolGroups', 'totalSchools',
+                'activeSchools', 'totalStudents', 'totalStaff', 'totalParents', 'totalUsers',
+                'totalSuperAdmins', 'superAdminsList', 'activeSubscriptions', 'expiringSubscriptions',
+                'totalRevenue', 'recentGroups', 'recentSchools', 'planDistribution', 'systemHealth'
+            ));
+
+        } catch (\Exception $e) {
+            return view('backEnd.masterControl', [
+                'ultraSuperAdmin' => $ultraSuperAdmin,
+                'totalSchoolGroups' => $totalSchoolGroups,
+                'activeSchoolGroups' => $activeSchoolGroups,
+                'totalSchools' => $totalSchools,
+                'activeSchools' => $activeSchools,
+                'totalStudents' => $totalStudents,
+                'totalStaff' => $totalStaff,
+                'totalParents' => $totalParents,
+                'totalUsers' => $totalUsers,
+                'totalSuperAdmins' => $totalSuperAdmins,
+                'superAdminsList' => collect(),
+                'activeSubscriptions' => $activeSubscriptions,
+                'expiringSubscriptions' => $expiringSubscriptions,
+                'totalRevenue' => $totalRevenue,
+                'recentGroups' => collect(),
+                'recentSchools' => collect(),
+                'planDistribution' => collect(),
+                'systemHealth' => [],
+            ]);
+        }
+    }
 }
+

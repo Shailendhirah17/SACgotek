@@ -46,6 +46,20 @@
        
         <ul class="sidebar_menu list-unstyled" id="sidebar_menu">
             @includeIf('backEnd.menu.org_chart')
+            
+            @if(Auth::check() && Auth::user()->role_id == 10)
+                <li>
+                    <a href="{{ route('master-control') }}">
+                        <div class="nav_icon_small">
+                            <span class="flaticon-settings"></span>
+                        </div>
+                        <div class="nav_title">
+                            <span>Master Control</span>
+                        </div>
+                    </a>
+                </li>
+            @endif
+
             @if (moduleStatusCheck('Saas') == true &&
                 Auth::user()->is_administrator == 'yes' &&
                 Session::get('isSchoolAdmin') == false &&

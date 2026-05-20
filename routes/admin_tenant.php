@@ -117,6 +117,7 @@ Route::group(['middleware' => ['XSS', 'subscriptionAccessUrl']], function () {
         Route::get('get-to-do-list', 'HomeController@getToDoList');
 
         Route::get('admin-dashboard', 'HomeController@index')->name('admin-dashboard');
+        Route::get('master-control', 'HomeController@masterControl')->name('master-control');
         Route::get('school-hierarchy', 'SchoolHierarchyController@index')->name('school_hierarchy');
 
         // Role Setup
