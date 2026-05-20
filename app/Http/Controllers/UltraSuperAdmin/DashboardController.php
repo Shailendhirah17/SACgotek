@@ -60,9 +60,9 @@ class DashboardController extends Controller
 
             // Super Admin Statistics
             $superAdminsList = collect();
-            if (DB::getSchemaBuilder()->hasTable('super_admins')) {
-                $totalSuperAdmins = SuperAdmin::count();
-                $superAdminsList = SuperAdmin::with('schoolGroup')->get();
+            if (DB::getSchemaBuilder()->hasTable('users')) {
+                $superAdminsList = \App\User::where('role_id', 1)->with(['school.schoolGroup'])->get();
+                $totalSuperAdmins = $superAdminsList->count();
             }
 
             // User Statistics

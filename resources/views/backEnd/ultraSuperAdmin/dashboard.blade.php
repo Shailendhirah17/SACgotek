@@ -101,63 +101,64 @@
             </div>
             
             @if(isset($superAdminsList) && $superAdminsList->count() > 0)
-            <table class="usa-table">
-                <thead>
-                    <tr>
-                        <th>Super Admin Details</th>
-                        <th>Organization (School Group)</th>
-                        <th>Subscription Model</th>
-                        <th>Subscription Period</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($superAdminsList as $account)
-                    <tr>
-                        <td>
-                            <div style="font-weight: 600; color: var(--usa-text-primary);">{{ $account->full_name }}</div>
-                            <div style="font-size: 11px; color: var(--usa-text-muted);">{{ $account->email }} ({{ $account->username }})</div>
-                        </td>
-                        <td>
-                            @if($account->schoolGroup)
-                                <div style="font-weight: 600; color: var(--usa-text-primary);">{{ $account->schoolGroup->name }}</div>
-                                <div style="font-size: 11px; color: var(--usa-text-muted);">Code: {{ $account->schoolGroup->code }}</div>
-                            @else
-                                <span style="color: var(--usa-text-muted);">No School Group Assigned</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if($account->schoolGroup)
-                                <span class="usa-badge usa-badge-info" style="text-transform: uppercase;">
-                                    {{ $account->schoolGroup->subscription_plan ?? 'N/A' }}
-                                </span>
-                            @else
-                                <span style="color: var(--usa-text-muted);">N/A</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if($account->schoolGroup)
-                                <div>
-                                    <span style="font-size: 12px; color: var(--usa-text-muted);">Start:</span> 
-                                    {{ $account->schoolGroup->subscription_start ? $account->schoolGroup->subscription_start->format('d M, Y') : 'N/A' }}
-                                </div>
-                                <div style="margin-top: 2px;">
-                                    <span style="font-size: 12px; color: var(--usa-text-muted);">End:</span> 
-                                    {{ $account->schoolGroup->subscription_end ? $account->schoolGroup->subscription_end->format('d M, Y') : 'N/A' }}
-                                </div>
-                            @else
-                                <span style="color: var(--usa-text-muted);">N/A</span>
-                            @endif
-                        </td>
-                        <td>
-                            <span class="usa-badge {{ $account->active_status ? 'usa-badge-success' : 'usa-badge-danger' }}">
-                                {{ $account->active_status ? 'Active' : 'Inactive' }}
-                            </span>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; padding: 20px;">
+                @foreach($superAdminsList as $account)
+                @php
+                    $school = $account->school;
+                    $group = $school ? $school->schoolGroup : null;
+                    
+                    $orgName = $school ? $school->school_name : 'No Organization';
+                    if ($group) {
+                        $orgName = $group->name . ' (' . $orgName . ')';
+                    }
+                    
+                    $subscription = $group ? ($group->subscription_plan ?? 'Basic') : 'Basic';
+                    $renewal = $group && $group->subscription_end ? 'Renews ' . $group->subscription_end->diffForHumans() : 'Auto-renew active';
+                    $startDate = $group && $group->subscription_start ? $group->subscription_start->format('d M, Y') : ($account->created_at ? $account->created_at->format('d M, Y') : 'N/A');
+                    $endDate = $group && $group->subscription_end ? $group->subscription_end->format('d M, Y') : 'Lifetime';
+                    $orgType = $group ? 'Enterprise Group' : 'Independent School';
+                @endphp
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <div style="font-weight: 700; color: var(--usa-text-primary); font-size: 18px;">{{ $account->full_name }}</div>
+                        <span class="usa-badge {{ $account->active_status ? 'usa-badge-success' : 'usa-badge-danger' }}">{{ $account->active_status ? 'Active' : 'Inactive' }}</span>
+                    </div>
+                    
+                    <div style="color: var(--usa-primary-light); font-size: 14px; margin-bottom: 20px; display: flex; align-items: center;">
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i> {{ $account->email }}
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: var(--usa-text-secondary);">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;">
+                            <span>Organization Name</span>
+                            <strong style="color: var(--usa-text-primary);">{{ $orgName }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;">
+                            <span>Organization Type</span>
+                            <strong style="color: var(--usa-text-primary);">{{ $orgType }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;">
+                            <span>Subscription</span>
+                            <strong style="color: var(--usa-info); text-transform: capitalize;">
+                                <i class="fas fa-gem" style="margin-right: 4px;"></i>{{ $subscription }}
+                            </strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;">
+                            <span>Renewal</span>
+                            <strong style="color: var(--usa-warning);">{{ $renewal }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;">
+                            <span>Start Date</span>
+                            <strong style="color: var(--usa-text-primary);">{{ $startDate }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 6px;">
+                            <span>End Date</span>
+                            <strong style="color: var(--usa-text-primary);">{{ $endDate }}</strong>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
             @else
             <div style="text-align: center; padding: 40px; color: var(--usa-text-muted);">
                 <i class="fas fa-user-shield" style="font-size: 32px; margin-bottom: 12px; display: block;"></i>
