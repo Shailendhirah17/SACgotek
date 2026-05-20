@@ -584,11 +584,24 @@ class HomeController extends Controller
                 'disk_free' => @disk_free_space('/') ? round(disk_free_space('/') / (1024 * 1024 * 1024), 2) . ' GB' : 'N/A',
             ];
 
+            $geoData = ['map_points' => [], 'state_distribution' => [], 'city_distribution' => [], 'growth_opportunities' => []];
+            $financeData = ['total_subscription_revenue' => 0, 'total_school_revenue' => 0, 'platform_fee_revenue' => 0, 'net_platform_revenue' => 0, 'monthly_trend' => []];
+            
+            if (class_exists('\App\Services\GeographicIntelligenceService')) {
+                $geoService = new \App\Services\GeographicIntelligenceService();
+                $geoData = $geoService->getPlatformGeoData();
+            }
+            if (class_exists('\App\Services\SaasFinanceService')) {
+                $financeService = new \App\Services\SaasFinanceService();
+                $financeData = $financeService->getPlatformRevenueOverview();
+            }
+
             return view('backEnd.masterControl', compact(
                 'ultraSuperAdmin', 'totalSchoolGroups', 'activeSchoolGroups', 'totalSchools',
                 'activeSchools', 'totalStudents', 'totalStaff', 'totalParents', 'totalUsers',
                 'totalSuperAdmins', 'superAdminsList', 'activeSubscriptions', 'expiringSubscriptions',
-                'totalRevenue', 'recentGroups', 'recentSchools', 'planDistribution', 'systemHealth'
+                'totalRevenue', 'recentGroups', 'recentSchools', 'planDistribution', 'systemHealth',
+                'geoData', 'financeData'
             ));
 
         } catch (\Exception $e) {
@@ -611,6 +624,8 @@ class HomeController extends Controller
                 'recentSchools' => collect(),
                 'planDistribution' => collect(),
                 'systemHealth' => [],
+                'geoData' => ['map_points' => [], 'state_distribution' => [], 'city_distribution' => [], 'growth_opportunities' => []],
+                'financeData' => ['total_subscription_revenue' => 0, 'total_school_revenue' => 0, 'platform_fee_revenue' => 0, 'net_platform_revenue' => 0, 'monthly_trend' => []],
             ]);
         }
     }
