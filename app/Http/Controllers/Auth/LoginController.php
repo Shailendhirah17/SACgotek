@@ -407,6 +407,13 @@ class LoginController extends Controller
                 $user = User::where('email', $request->email)->where('school_id', $school->id)->first();
             }
 
+            if (! $user) {
+                $student = SmStudent::where('admission_no', $request->email)->where('school_id', $school->id)->first();
+                if ($student) {
+                    $user = User::where('id', $student->user_id)->where('school_id', $school->id)->first();
+                }
+            }
+
             if ($user) {
                 if (Hash::check($request->password, $user->password)) {
                     $this->guard()->login($user);
