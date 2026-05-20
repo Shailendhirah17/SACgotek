@@ -42,7 +42,7 @@ class UserRolePermission
             abort(403);
         }
 
-        if ((! is_null($permissions)) && (Auth::user()->role_id !== 1)) {
+        if ((! is_null($permissions)) && (!in_array(Auth::user()->role_id, [1, 10]))) {
 
             if (in_array($route, $permissions)) {
                 return $next($request);

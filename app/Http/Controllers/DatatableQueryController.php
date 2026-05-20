@@ -413,7 +413,7 @@ class DatatableQueryController extends Controller
     public function getStaffList(Request $request)
     {
 
-            if (Auth::user()->role_id == 1) {
+            if (in_array(Auth::user()->role_id, [1, 10])) {
                 $staffs = SmStaff::query();
 
                 $staffs->withOutGlobalScope(ActiveStatusSchoolScope::class)->where('school_id', Auth::user()->school_id)
@@ -445,9 +445,9 @@ class DatatableQueryController extends Controller
                     $staffs->where('full_name', 'like', '%' . $request->staff_name . '%');
                 }
 
-                if (Auth::user()->role_id != 1) {
+                if (!in_array(Auth::user()->role_id, [1, 10])) {
 
-                    $staffs->where('role_id', '!=', 1);
+                    $staffs->whereNotIn('role_id', [1, 10]);
                 }
 
             } else {
@@ -456,7 +456,7 @@ class DatatableQueryController extends Controller
                     ->when(moduleStatusCheck('SaasHr'), function ($query) {
                         return $query->where('custom_saas_user', '!=', 1);
                     })
-                    ->where('role_id', '!=', 1)
+                    ->whereNotIn('role_id', [1, 10])
                     ->where('role_id', '!=', 5)
                     ->with([
                         'roles' => function ($query): void {
@@ -474,9 +474,9 @@ class DatatableQueryController extends Controller
             return DataTables::of($staffs)
                 ->addIndexColumn()
                 ->addColumn('switch', function ($row): string {
-                    if (Auth::user()->id != $row->user_id || Auth::user()->role_id != 1) {
+                    if (Auth::user()->id != $row->user_id || !in_array(Auth::user()->role_id, [1, 10])) {
                         return '<label class="switch_toggle">
-                            <input type="checkbox" id="' . $row->id . '" value="' . $row->id . '" class="switch-input-staff hr_' . $row->id . '" ' . ($row->active_status == 0 ? '' : 'checked') . '>
+                            <input type="checkbox" id="' . $row->id . '" value="' . $row->id . '" class="switch-input-staff hr_' . $row->id . '" ' . ($row->active_status == 0 ? '' : 'checked') . '>';
                             <span class="slider round"></span>
                           </label>';
                     }

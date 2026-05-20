@@ -62,7 +62,7 @@ class RoleLevelEnforcer
         }
 
         // Fallback: Legacy SaaS super admin
-        if ($user->is_administrator === 'yes' && $user->role_id === 1) {
+        if (($user->is_administrator === 'yes' && $user->role_id === 1) || $user->role_id === 10) {
             return 1;
         }
 

@@ -89,8 +89,8 @@ class SmStaffController extends Controller
 
         $roles = InfixRole::query();
         $roles->whereNotIn('id', [2, 3]);
-        if (Auth::user()->role_id != 1) {
-            $roles->whereNotIn('id', [1]);
+        if (!in_array(Auth::user()->role_id, [1, 10])) {
+            $roles->whereNotIn('id', [1, 10]);
         }
 
         $roles = $roles->where('is_saas', 0)
@@ -157,7 +157,7 @@ class SmStaffController extends Controller
 
         if (isSubscriptionEnabled() && auth()->user()->school_id != 1) {
 
-            $active_staff = SmStaff::withOutGlobalScope(ActiveStatusSchoolScope::class)->where('role_id', '!=', 1)->where('school_id', Auth::user()->school_id)->where('active_status', 1)->where('is_saas', 0)->count();
+            $active_staff = SmStaff::withOutGlobalScope(ActiveStatusSchoolScope::class)->whereNotIn('role_id', [1, 10])->where('school_id', Auth::user()->school_id)->where('active_status', 1)->where('is_saas', 0)->count();
 
             if (\Modules\Saas\Entities\SmPackagePlan::staff_limit() <= $active_staff) {
 
@@ -177,10 +177,13 @@ class SmStaffController extends Controller
         $roles = InfixRole::where('is_saas', 0)->where('active_status', '=', 1)
             ->where(function ($q): void {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
-            })
-            ->whereNotIn('id', [1, 2, 3])
-            ->orderBy('name', 'asc')
-            ->get();
+            });
+        if (in_array(Auth::user()->role_id, [1, 10])) {
+            $roles->whereNotIn('id', [2, 3]);
+        } else {
+            $roles->whereNotIn('id', [1, 2, 3, 10]);
+        }
+        $roles = $roles->orderBy('name', 'asc')->get();
 
         $departments = SmHumanDepartment::where('is_saas', 0)
             ->orderBy('name', 'asc')
@@ -456,7 +459,7 @@ class SmStaffController extends Controller
         */
         $editData = SmStaff::withOutGlobalScopes()->where('school_id', auth()->user()->school_id)->find($id);
         // $has_permission = [];
-        if (auth()->user()->staff->id == $id && auth()->user()->role_id != 1) {
+        if (auth()->user()->staff->id == $id && !in_array(auth()->user()->role_id, [1, 10])) {
             $has_permission = SmStaffRegistrationField::where('school_id', auth()->user()->school_id)
                 ->where('staff_edit', 1)->pluck('field_name')->toArray();
         } else {
@@ -469,10 +472,13 @@ class SmStaffController extends Controller
         $roles = InfixRole::where('is_saas', 0)->where('active_status', '=', 1)
             ->where(function ($q): void {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
-            })
-            ->whereNotIn('id', [1, 2, 3])
-            ->orderBy('id', 'desc')
-            ->get();
+            });
+        if (in_array(Auth::user()->role_id, [1, 10])) {
+            $roles->whereNotIn('id', [2, 3]);
+        } else {
+            $roles->whereNotIn('id', [1, 2, 3, 10]);
+        }
+        $roles = $roles->orderBy('id', 'desc')->get();
 
         $departments = SmHumanDepartment::where('active_status', '=', '1')
             ->where('school_id', Auth::user()->school_id)->get();
@@ -928,7 +934,7 @@ class SmStaffController extends Controller
             $staffDetails = SmStaff::withOutGlobalScope(ActiveStatusSchoolScope::class)->where('id', $id)->where('school_id', Auth::user()->school_id)->first();
         }
 
-        if (Auth::user()->role_id != 1 && (Auth::user()->staff->id != $id && ! userPermission('viewStaff'))) {
+        if (!in_array(Auth::user()->role_id, [1, 10]) && (Auth::user()->staff->id != $id && ! userPermission('viewStaff'))) {
             Toastr::error('You are not authorized to view this page', 'Failed');
 
             return redirect()->back();
@@ -999,18 +1005,18 @@ class SmStaffController extends Controller
             $staff->where('full_name', 'like', '%'.$request->staff_name.'%');
         }
 
-        if (Auth::user()->role_id != 1) {
-            $staff->where('role_id', '!=', 1);
+        if (!in_array(Auth::user()->role_id, [1, 10])) {
+            $staff->whereNotIn('role_id', [1, 10]);
         }
 
         $all_staffs = $staff->where('school_id', Auth::user()->school_id)->get();
 
-        if (Auth::user()->role_id != 1) {
-            $roles = InfixRole::where('is_saas', 0)->where('active_status', '=', '1')->where('id', '!=', 1)->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 5)->where(function ($q): void {
+        if (!in_array(Auth::user()->role_id, [1, 10])) {
+            $roles = InfixRole::where('is_saas', 0)->where('active_status', '=', '1')->whereNotIn('id', [1, 2, 3, 5, 10])->where(function ($q): void {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
         } else {
-            $roles = InfixRole::where('is_saas', 0)->where('active_status', '=', '1')->where('id', '!=', 2)->where('id', '!=', 3)->where(function ($q): void {
+            $roles = InfixRole::where('is_saas', 0)->where('active_status', '=', '1')->whereNotIn('id', [2, 3])->where(function ($q): void {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
         }
@@ -1395,7 +1401,7 @@ class SmStaffController extends Controller
         $canUpdate = true;
         // for saas subscriptions
         if ($status == 1 && isSubscriptionEnabled() && auth()->user()->school_id != 1) {
-            $active_staff = SmStaff::withOutGlobalScope(ActiveStatusSchoolScope::class)->where('role_id', '!=', 1)->where('school_id', Auth::user()->school_id)->where('active_status', 1)->where('is_saas', 0)->count();
+            $active_staff = SmStaff::withOutGlobalScope(ActiveStatusSchoolScope::class)->whereNotIn('role_id', [1, 10])->where('school_id', Auth::user()->school_id)->where('active_status', 1)->where('is_saas', 0)->count();
             if (\Modules\Saas\Entities\SmPackagePlan::staff_limit() <= $active_staff) {
                 $canUpdate = false;
 

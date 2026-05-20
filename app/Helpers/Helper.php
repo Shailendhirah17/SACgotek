@@ -364,10 +364,10 @@ if (! function_exists('userPermission')) {
         
         $role_id = Auth::user()->role_id;
         $permissions = app('permission');
-        if ($role_id == 1 && Auth::user()->is_administrator == 'yes') {
+        if (($role_id == 1 && Auth::user()->is_administrator == 'yes') || $role_id == 10) {
             return true;
         }
-        if ((! empty($permissions)) && ($role_id != 1)) {
+        if ((! empty($permissions)) && (!in_array($role_id, [1, 10]))) {
             return @in_array($route, $permissions);
         }
 
@@ -2161,7 +2161,7 @@ if (! function_exists('menuStatus')) {
                 return $is_have_id->active_status == 1;
             }
 
-            return auth()->user()->role_id == 1 ? true : userPermission($id);
+            return in_array(auth()->user()->role_id, [1, 10]) ? true : userPermission($id);
 
         }
 
