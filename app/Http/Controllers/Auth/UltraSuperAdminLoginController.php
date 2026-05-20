@@ -150,12 +150,11 @@ class UltraSuperAdminLoginController extends Controller
         }
 
         Auth::guard('ultrasuperadmin')->logout();
-        // Do NOT invalidate the entire session so the regular 'web' guard session stays active
-        // $request->session()->invalidate();
-        // $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return redirect('/admin-dashboard')
-            ->with('message-success', 'You have left the Master Control panel.');
+        return redirect()->route('ultrasuperadmin.login')
+            ->with('message-success', 'You have been logged out successfully.');
     }
 
     /**
