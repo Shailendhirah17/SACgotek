@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 DB::transaction(function() {
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
     // 1. Create or update the role in infix_roles table
     DB::table('infix_roles')->updateOrInsert(
         ['id' => 10],
@@ -39,7 +41,7 @@ DB::transaction(function() {
         [
             'full_name' => 'Ultra Super Admin',
             'username' => 'ultrasuperadmin@sacgotek.com',
-            'password' => Hash::make('Eash@ultrasuperadmin'),
+            'password' => Hash::make('123456'),
             'active_status' => 1,
             'school_id' => 1,
             'role_id' => 10,
@@ -66,6 +68,8 @@ DB::transaction(function() {
             'updated_at' => now()
         ]
     );
+
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 });
 
 echo "Ultra Super Admin seeded successfully!\n";
