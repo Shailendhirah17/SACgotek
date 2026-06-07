@@ -5,7 +5,7 @@
     "TemplateSettings": true,
     "RolePermission": true,
     "RazorPay": false,
-    "Saas": false,
+    "Saas": true,
     "Lesson": true,
     "Zoom": true,
     "ParentRegistration": false,

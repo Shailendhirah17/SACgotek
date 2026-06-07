@@ -476,7 +476,7 @@ class DatatableQueryController extends Controller
                 ->addColumn('switch', function ($row): string {
                     if (Auth::user()->id != $row->user_id || !in_array(Auth::user()->role_id, [1, 10])) {
                         return '<label class="switch_toggle">
-                            <input type="checkbox" id="' . $row->id . '" value="' . $row->id . '" class="switch-input-staff hr_' . $row->id . '" ' . ($row->active_status == 0 ? '' : 'checked') . '>';
+                            <input type="checkbox" id="' . $row->id . '" value="' . $row->id . '" class="switch-input-staff hr_' . $row->id . '" ' . ($row->active_status == 0 ? '' : 'checked') . '>
                             <span class="slider round"></span>
                           </label>';
                     }
